@@ -6,6 +6,7 @@ import validateConfig from './veevalidate/config'
 import VModal from 'vue-js-modal'
 import { store } from './store/index.js'
 import MockContainer from '@/apiMock/mockContainer'
+import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 Vue.use(VeeValidate, validateConfig)
@@ -16,5 +17,6 @@ new MockContainer().init()
 new Vue({
   router,
   store,
-  render: h => h(App),
+  vuetify,
+  render: h => h(App)
 }).$mount('#app')
