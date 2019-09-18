@@ -18,6 +18,7 @@ export default function (id, success, failure) {
         })
       })
       .catch((e) => {
+        // eslint-disable-next-line
         console.error(e)
       })
   }

@@ -13,7 +13,7 @@ function getMembers () {
   return axios.get(`${api.baseUrl}member`)
 }
 
-function getFamily (familyName) {
+function getFamily () {
   return axios.get(`${api.baseUrl}family`)
 }
 
@@ -21,7 +21,7 @@ function getMyFamily () {
   return axios.get(`${api.baseUrl}family`)
 }
 
-function getFamilyRestaurant (familyname) {
+function getFamilyRestaurant () {
   return axios.get(`${api.baseUrl}family/restaurant`)
 }
 
