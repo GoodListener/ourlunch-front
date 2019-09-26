@@ -1,14 +1,13 @@
 <template>
   <div>
-    <div class="famMember_wrapper">
-    <div class="topFixArea">
-      <div class="backButton" @click="prevPage()">
-        <i class="fas fa-arrow-left"></i>
+    <v-app-bar class="famMember_wrapper">
+      <div class="topFixArea">
+        <div class="backButton" @click="prevPage()">
+          <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="headerText">식당 등록하기</div>
       </div>
-      <div class="headerText">식당 등록하기
-      </div>
-    </div>
-  </div>
+    </v-app-bar>
     <Page :page="content">
       <PageContent content-no="searchRestaurant">
         <div class="search_bar">
