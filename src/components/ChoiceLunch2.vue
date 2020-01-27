@@ -1,31 +1,52 @@
 <template>
-<div>
-    <div>
-      <SubTitle class="title">오늘의 식당 후보는?</SubTitle>
-    </div>
-    <ul>
-      <li class="list"
-      v-for="(restaurant, index) in restaurantList"
-      :key="index">
-        <span>{{ restaurant.RestaurantsName }}</span>
-      </li>
-    </ul>
-    <div class="buttons">
-        <Button class="default" @click="prevPage()">이전</Button>
-        <Button class="primary" @click="nextPage()">다음</Button>
-    </div>
-</div>
+  <div>
+      <v-app-bar>
+        오늘의 식당 후보는?
+      </v-app-bar>
+      <v-list>
+        <template v-for="(restaurant, index) in restaurantList">
+          <v-list-item-group
+            :key="index"
+            color="primary"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title v-text="restaurant.RestaurantsName"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </template>
+      </v-list>
+      <v-footer
+        app
+        class="justify-center"
+      >
+        <div class="my-5">
+          <v-btn
+            rounded
+            outlined
+            color="primary"
+            class="mx-2"
+            @click="prevPage()"
+          >이전</v-btn>
+          <v-btn
+            rounded
+            color="primary"
+            class="mx-2"
+            @click="nextPage()"
+          >다음</v-btn>
+        </div>
+      </v-footer>
+  </div>
 </template>
 
 <script>
-import Button from '@/components/ui/Button'
-import SubTitle from '@/components/ui/SubTitle'
 import { getFamilyRestaurant } from '@/api/index'
 
 export default {
   name: 'ChoiceLunch2',
   components: {
-    SubTitle, Button
+    
   },
   mounted: function () {
     getFamilyRestaurant().then(response => {

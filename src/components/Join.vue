@@ -1,25 +1,29 @@
 <template>
   <div>
-    <Title class="title">{{$route.params.familyName}}</Title>
-    <SubTitle>점심팸에 합류하기 위해 로그인 해주세요</SubTitle>
-    <div>
-      <div class="middle">
-          <div id="kakaoLoginButton"></div>
+    <v-app-bar>
+      <v-toolbar-title>{{ $route.params.familyName }}</v-toolbar-title>
+    </v-app-bar>
+    <v-content>
+      점심팸에 합류하기 위해 로그인 해주세요
+    </v-content>
+    <v-footer
+      app
+      class="justify-center">
+      <div class="my-5">
+        <div id="kakaoLoginButton"></div>
       </div>
-    </div>
+    </v-footer>
   </div>
 </template>
 
 <script>
-import Title from '@/components/ui/Title'
-import SubTitle from '@/components/ui/SubTitle'
 import kakaoAuth from '@/utils/kakaoAuth'
 import { processLogin, checkStatus } from '@/utils/processAuth'
 
 export default {
   name: 'Join',
   components: {
-    Title, SubTitle
+    
   },
   mounted: function () {
     processLogin(this)
@@ -28,12 +32,14 @@ export default {
     })
   },
   methods: {
+    // eslint-disable-next-line 
     success: function (data) {
       window.Kakao.Auth.getStatusInfo(
         (data) => { checkStatus(data, this) }
       )
     },
     failure: function (result) {
+      // eslint-disable-next-line
       console.error(result)
     }
   }

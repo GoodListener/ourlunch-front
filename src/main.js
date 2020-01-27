@@ -6,7 +6,8 @@ import validateConfig from './veevalidate/config'
 import VModal from 'vue-js-modal'
 import { store } from './store/index.js'
 import MockContainer from '@/apiMock/mockContainer'
-import vuetify from './plugins/vuetify';
+import vuetify from './plugins/vuetify'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.config.productionTip = false
 Vue.use(VeeValidate, validateConfig)

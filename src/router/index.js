@@ -17,12 +17,6 @@ import FamMembers from '../components/FamMembers'
 import FamRestaurants from '../components/FamRestaurants'
 import Lotto from '../components/Lotto'
 
-// peace study
-import Study from '../components/Study'
-
-// ekim Test
-import Test from '../components/Test'
-
 Vue.use(Router)
 
 export default new Router({
@@ -52,16 +46,6 @@ export default new Router({
       path: '/joinComplete/:familyName',
       name: 'JoinComplete',
       component: JoinComplete
-    },
-    {
-      path: '/test',
-      name: 'Test',
-      component: Test
-    },
-    {
-      path: '/study',
-      name: 'Study',
-      component: Study
     },
     {
       path: '/startFamily',

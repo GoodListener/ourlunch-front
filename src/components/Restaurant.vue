@@ -1,28 +1,50 @@
 <template>
   <div>
-    <v-app-bar class="famMember_wrapper">
-      <div class="topFixArea">
-        <div class="backButton" @click="prevPage()">
-          <i class="fas fa-arrow-left"></i>
-        </div>
-        <div class="headerText">식당 등록하기</div>
-      </div>
+    <v-app-bar>
+      <v-btn text small @click="prevPage()">
+        <v-icon dark right>mdi-arrow-left</v-icon>&nbsp;
+      </v-btn>
+      식당 등록하기
     </v-app-bar>
     <Page :page="content">
       <PageContent content-no="searchRestaurant">
-        <div class="search_bar">
-          <Input type="text" label="식당 검색"
-            v-model="restaurantName"
-            @keyup.enter="searchRestaurant"/><Icon @click="searchRestaurant"></Icon>
+        <div>
+          <v-row>
+            <v-col
+              cols="8"
+              md="4"
+            >
+              <v-text-field
+                v-model="restaurantName"
+                :rules="nameRules"
+                label="식당"
+                required
+                @keyup.enter="searchRestaurant"
+              ></v-text-field>
+            </v-col>
+          </v-row>
         </div>
-        <div class="restaurant_list">
+        <v-list @click="selectRestaurant(restaurant)">
           <li class="list" v-for="restaurant in restaurants" v-bind:key="restaurant.key" @click="selectRestaurant(restaurant)">
             <div>
               <p>{{restaurant.place_name }}</p>
               <p>{{restaurant.address_name}}</p>
             </div>
           </li>
-        </div>
+          <template v-for="restaurant in restaurants">
+            <v-list-item-group
+              :key="restaurant.key"
+              color="primary"
+            >
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title v-text="restaurant.place_name"></v-list-item-title>
+                  <v-list-item-subtitle v-text="restaurant.address_name"></v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </template>
+        </v-list>
       </PageContent>
 
       <PageContent content-no="restaurantMap">
@@ -55,9 +77,6 @@
   </div>
 </template>
 <script>
-import Title from '@/components/ui/Title'
-import Input from '@/components/ui/Input'
-import Icon from '@/components/ui/Icon'
 import Button from '@/components/ui/Button'
 import Page from '@/components/ui/Page'
 import PageContent from '@/components/ui/PageContent'
@@ -69,7 +88,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Restaurant',
   components: {
-    Title, Input, Icon, Button, Page, PageContent, KakaoMap
+    Button, Page, PageContent, KakaoMap
   },
   methods: {
     searchRestaurant: function () {
@@ -95,7 +114,9 @@ export default {
       this.$router.push('?content=' + this.contentArray[this.page + 1])
     },
     submit: function () {
+      // eslint-disable-next-line
       console.log(this.place)
+      // eslint-disable-next-line
       console.log(this.selectCategory)
     }
   },
@@ -105,7 +126,11 @@ export default {
     restaurants: [],
     place: {},
     restaurantCategory: RestaurantCategory.category,
-    selectCategory: ''
+    selectCategory: '',
+    nameRules: [
+      v => !!v || '식당 이름을 입력해주세요.',
+      v => v.length >= 2 || '식당 이름을 2자 이상 입력해주세요.'
+    ]
   }),
   computed: {
     ...mapGetters([
@@ -139,10 +164,6 @@ export default {
   background-color: white;
   border-bottom: 1px solid #e6e6e6;
 }
-.famMember_wrapper{
-  float: left;
-  margin: 0px 20px;
-}
 li.list{
   list-style: none;
   margin-bottom: 5px;
@@ -166,10 +187,5 @@ li.list{
   float: right;
   width: auto;
 }
-.headerText{
-  float: left;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 15px 15px 15px 0px;
-}
+
 </style>

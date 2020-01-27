@@ -1,33 +1,44 @@
 <template>
-<div>
   <div>
-    <SubTitle class="title">오늘의 점심은?</SubTitle>
-  </div>
-  <div>
-    <Content class="result">결과 : {{ $route.params.result }}</Content>
-  </div>
-      <div class="buttons">
-        <div>
-            <TextButton class="replay" @click="replay()"><i class="fas fa-redo"></i> 다시해!</TextButton>
-        </div>
-        <div>
-          <Button class="default" @click="prevPage()">이전</Button>
-          <Button class="primary" @click="nextPage()">가즈아</Button>
-        </div>
+    <v-app-bar>
+      오늘의 점심은?
+    </v-app-bar>
+    <v-content>
+      <p>결과 : {{ $route.params.result }}</p>
+      <v-btn text small @click="replay">
+        <v-icon>mdi-refresh</v-icon>&nbsp;
+        다시해!
+      </v-btn>
+    </v-content>
+    <v-footer
+      app
+      class="justify-center"
+    >
+      <div class="my-5">
+        <v-btn
+          rounded
+          outlined
+          color="primary"
+          class="mx-2"
+          @click="prevPage()"
+        >이전</v-btn>
+        <v-btn
+          rounded
+          color="primary"
+          class="mx-2"
+          @click="nextPage()"
+        >가즈아</v-btn>
       </div>
+    </v-footer>
   </div>
 </template>
 
 <script>
-import Button from '@/components/ui/Button'
-import SubTitle from '@/components/ui/SubTitle'
-import Input from '@/components/ui/Input'
-import Content from '@/components/ui/Content'
 
 export default {
   name: 'ChoiceLunchResult',
   components: {
-    SubTitle, Input, Button, Content
+    
   },
   data: () => ({
     companyName: '',
@@ -35,6 +46,7 @@ export default {
   }),
   methods: {
     nextPage: function () {
+      // eslint-disable-next-line
       console.log('가즈아')
     },
     prevPage: function () {
@@ -46,34 +58,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-TextButton.replay {
-  font-size: 20px
-}
-button.base_button.default {
-  width: 20%;
-}
-
-button.base_button.primary {
-  width: 50%;
-}
-
-.company {
-  margin-bottom: 50px;
-}
-
-.buttons {
-  width: 100%;
-  position: fixed;
-  bottom: 50px;
-}
-
-.result{
-  margin: 150px 0px 0px 0px;
-  font-size: 33px;
-  weight : bold;
-  font-family: 'BMDOHYEON';
-}
-</style>

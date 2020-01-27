@@ -7,7 +7,10 @@
     </v-content>
     <v-footer>
       <div>
-        <v-btn text small @click="handleRestaurantButton"><i class="fas fa-plus-circle plus-icon"></i> 식당 등록하기</v-btn>
+        <v-btn text small @click="handleRestaurantButton">
+          <v-icon>mdi-plus</v-icon>&nbsp;
+          식당 등록하기
+        </v-btn>
       </div>
       <div>
         <v-btn text small @click="choiceLunch">오늘의 점심은?</v-btn>

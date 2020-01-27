@@ -1,36 +1,52 @@
 <template>
   <div>
-    <div>
-      <SubTitle class="title">오늘의 점심 멤버는?</SubTitle>
-    </div>
-    <ul>
-      <li class="list"
-        v-for="(famMember, index) in famMembers"
-        :key="index"
-        :class="(famMember.isSelected ? 'selected' : '')"
-        @click="selectMember(index)">
-        <span class="memberName">
-          {{ famMember.memberName }}
-        </span>
-      </li>
-    </ul>
-    <div class="buttons">
-        <Button class="default" @click="prevPage()">이전</Button>
-        <Button class="primary" @click="nextPage()">다음</Button>
-    </div>
+    <v-app-bar>
+      오늘의 점심 멤버는?
+    </v-app-bar>
+    <v-list>
+      <template v-for="(famMember, index) in famMembers">
+        <v-list-item-group
+          :key="index"
+          color="primary"
+          @click="selectMember(index)"
+        >
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title v-text="famMember.memberName"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </template>
+    </v-list>
+    <v-footer
+      app
+      class="justify-center">
+      <div class="my-5">
+        <v-btn
+          rounded
+          outlined
+          color="primary"
+          class="mx-2"
+          @click="prevPage()"
+        >이전</v-btn>
+        <v-btn
+          rounded
+          color="primary"
+          class="mx-2"
+          @click="nextPage()"
+        >다음</v-btn>
+      </div>
+    </v-footer>
   </div>
 </template>
 
 <script>
-import Button from '@/components/ui/Button'
-import SubTitle from '@/components/ui/SubTitle'
-import Input from '@/components/ui/Input'
 import { getMembers } from '@/api/index'
 
 export default {
   name: 'ChoiceLunch1',
   components: {
-    SubTitle, Input, Button
+    
   },
   data: () => ({
     famMembers: []
@@ -42,6 +58,7 @@ export default {
   },
   methods: {
     nextPage: function () {
+      // eslint-disable-next-line
       console.log(this.famMembers.filter(famMember => famMember.isSelected))
       this.$router.push('choiceLunch2')
     },
@@ -54,45 +71,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-button.base_button.default {
-  width: 20%;
-}
-
-button.base_button.primary {
-  width: 50%;
-}
-
-.company {
-  margin-bottom: 50px;
-}
-
-.buttons {
-  width: 100%;
-  position: fixed;
-  bottom: 50px;
-}
-
-ul{
-  padding: 0;
-}
-
-li.list{
-  list-style: none;
-  margin: 5px;
-  padding: 5px;
-  border: 1px solid #DCDCDC;
-  background-color : #fdfdfd;
-  text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-li.selected {
-  background-color: #329AFC;
-  color: #fff;
-}
-</style>

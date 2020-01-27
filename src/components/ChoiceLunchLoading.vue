@@ -1,22 +1,36 @@
 <template>
-<div>
-    <div>
-      <SubTitle class="title">
-        <p class="move_text" :class="move">Loading...자동으로 넘어가게 해주세요</p>
-      </SubTitle>
-    </div>
-</div>
+  <v-container>
+    <v-row
+      class="fill-height"
+      align-content="center"
+      justify="center"
+    >
+      <v-col
+        class="subtitle-1 text-center"
+        cols="12"
+      >
+        오늘의 점심은........
+      </v-col>
+      <v-col cols="6">
+        <v-progress-linear
+          color="deep-purple accent-4"
+          :active="loading"
+          :indeterminate="loading"
+          rounded
+          height="6"
+        ></v-progress-linear>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-
-import SubTitle from '@/components/ui/SubTitle'
 import { getFamilyRestaurant } from '@/api/index'
 
 export default {
   name: 'ChoiceLunchLoading',
   components: {
-    SubTitle
+    
   },
   mounted: function () {
     getFamilyRestaurant().then(response => {
@@ -26,14 +40,10 @@ export default {
   },
   data: () => ({
     restaurantList: [],
-    move: ''
+    loading: true
   }),
   methods: {
     nextPage: function () {
-      setTimeout(() => {
-        this.move = 'moving'
-      }, 0)
-
       setTimeout(() => {
         this.$router.push('choiceLunchResult/' + this.choiceLunch().RestaurantsName)
       }, 2000)
@@ -46,14 +56,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.move_text {
-  transform: translateX(20%);
-  transition: transform 2s;
-}
-
-.moving {
-  transform: translateX(-20%);
-}
-</style>
