@@ -45,31 +45,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.title {
-  margin-bottom: 70px;
-}
-.main_image {
-  width: 100%;
-  max-width: 30rem;
-}
-.middle {
-  margin-top: 150px;
-  width: 100%;
-}
-
-#kakaoLoginButton {
-  display: inline-block;
-}
-
-.profile_box {
-  display: inline-flex;
-  align-items: center;
-}
-.profile_image {
-  width: 50px;
-  border-radius: 30px;
-}
-
-</style>

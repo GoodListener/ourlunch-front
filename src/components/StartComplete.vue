@@ -1,18 +1,24 @@
 <template>
   <div>
-    <SubTitle class ="title1">축하합니다! {{ getLoginUser.name }}님</SubTitle>
-    <SubTitle class ="title2">점심팸 등록 완료!</SubTitle>
-
-      <div class ="buttons">
-          <Button class="primary" @click="gotoMain()">우리의점심 시작</Button>
+    <v-app-bar>
+      축하합니다! {{ getLoginUser.name }}님<br>점심팸 등록 완료!
+    </v-app-bar>
+    <v-footer
+      app
+      class="justify-center">
+      <div class="my-5">
+        <v-btn
+          rounded
+          color="primary"
+          class="mx-2"
+          @click="gotoMain"
+        >우리의 점심 시작</v-btn>
       </div>
+    </v-footer>
   </div>
 </template>
 
 <script>
-import Button from '@/components/ui/Button'
-import SubTitle from '@/components/ui/SubTitle'
-import Input from '@/components/ui/Input'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -31,7 +37,7 @@ export default {
     ])
   },
   components: {
-    SubTitle, Input, Button
+    
   },
   methods: {
     gotoMain: function () {
@@ -40,20 +46,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-button.base_button.primary {
-  width: 65%;
-}
-
-.title2 {
-  margin-bottom: 50px;
-}
-
-.buttons {
-  width: 100%;
-  position: fixed;
-  bottom: 50px;
-}
-</style>

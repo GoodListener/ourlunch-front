@@ -69,15 +69,29 @@
         </div>
       </PageContent>
     </Page>
-    <div class="buttons">
-      <!-- <Button v-if="page >= 0" class="default" @click="prevPage()">이전</Button> -->
-      <Button v-if="page != 0 && page < (contentArray.length - 1)" class="primary" @click="nextPage()">다음</Button>
-      <Button v-if="content == 'pickRestaurant' && !!place.id" class="primary" @click="submit()">식당 등록</Button>
-    </div>
+    <v-footer
+      app
+      class="justify-center">
+      <div class="my-5">
+        <v-btn
+          v-if="page != 0 && page < (contentArray.length - 1)"
+          rounded
+          color="primary"
+          class="mx-2"
+          @click="nextPage"
+        >다음</v-btn>
+        <v-btn
+          v-if="content == 'pickRestaurant' && !!place.id"
+          rounded
+          color="primary"
+          class="mx-2"
+          @click="submit"
+        >식당 등록</v-btn>
+      </div>
+    </v-footer>
   </div>
 </template>
 <script>
-import Button from '@/components/ui/Button'
 import Page from '@/components/ui/Page'
 import PageContent from '@/components/ui/PageContent'
 import { getSearchRestaurant } from '../api/index.js'
@@ -88,7 +102,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Restaurant',
   components: {
-    Button, Page, PageContent, KakaoMap
+    Page, PageContent, KakaoMap
   },
   methods: {
     searchRestaurant: function () {
@@ -154,38 +168,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.topFixArea{
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width:100%;
-  background-color: white;
-  border-bottom: 1px solid #e6e6e6;
-}
-li.list{
-  list-style: none;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  border: 1px
-  solid #DCDCDC;
-  background-color : white;
-}
-
-.pick_restaurant_area
-{
-  height: 300px;
-}
-.backButton{
-  float: left;
-  padding: 18px 15px 18px 15px;
-  text-align: center;
-}
-.copy_btn{
-  float: right;
-  width: auto;
-}
-
-</style>

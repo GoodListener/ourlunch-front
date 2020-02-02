@@ -1,45 +1,54 @@
 <template>
   <div>
-    <SubTitle>{{$route.params.familyName}}</SubTitle>
-    <Title class="title">{{$route.params.familyName}} 점심팸 시작하기</Title>
-    <div class="my_profile_image_box">
-      <img :src="getLoginUser.profile_image" class="my_profile_image">
-    </div>
-    <div class="nickname">
-      <Input
-        type="text"
-        label="이름"
-        v-model="user.userName"
-        v-validate="'required|max:20'"
-        data-vv-name="name"
-        :error-messages="errors.first('name')"
-        required
-        @keyup="handleEnter"
-      />
-    </div>
-    <div class ="taste">
-      <Input
-        type="text"
-        label="나의 입맛은?"
-        v-model="user.appetite"
-        v-validate="'required|max:20'"
-        data-vv-name="appetite"
-        :error-messages="errors.first('appetite')"
-        required
-        @keyup="handleEnter"
-      />
-    </div>
-    <div class ="buttons">
-      <Button class="primary" @click="complete">완료</Button>
-    </div>
+    <v-app-bar>
+      {{$route.params.familyName}} 점심팸 시작하기
+    </v-app-bar>
+    <v-row justify="space-around">
+      <v-col cols="5">
+        <v-img :src="getLoginUser.profile_image" aspect-ratio="1.7"></v-img>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="8"
+        md="4">
+        <v-text-field
+          v-model="user.userName"
+          :rules="nameRules"
+          label="이름"
+          required
+          @keyup.enter="handleEnter"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="8"
+        md="4">
+        <v-text-field
+          v-model="user.appetite"
+          label="나의 입맛은?"
+          required
+          @keyup.enter="handleEnter"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <v-footer
+      app
+      class="justify-center">
+      <div class="my-5">
+        <v-btn
+          rounded
+          color="primary"
+          class="mx-2"
+          @click="complete"
+        >완료</v-btn>
+      </div>
+    </v-footer>
   </div>
 </template>
 
 <script>
-import Title from '@/components/ui/Title'
-import SubTitle from '@/components/ui/SubTitle'
-import Button from '@/components/ui/Button'
-import Input from '@/components/ui/Input'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -48,7 +57,7 @@ export default {
   },
   name: 'JoinFam',
   components: {
-    Title, SubTitle, Input, Button
+    
   },
   data: () => ({
     user: {
@@ -92,29 +101,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-button.base_button.default{
-  width: 20%;
-}
-button.base_button.primary{
-  width: 50%;
-}
-
-.nickname{
-  margin-bottom: 50px;
-}
-.buttons{
-  width: 100%;
-  position: fixed;
-  bottom: 50px;
-}
-
-.my_profile_image
-{
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  object-fit: cover;
-}
-</style>

@@ -1,78 +1,97 @@
 <template>
   <div>
-    <SubTitle class="title">우리의점심 점심팸 시작하기</SubTitle>
+    <v-app-bar>
+      우리의점심 점심팸 시작하기
+    </v-app-bar>
       <Page :page="page">
         <PageContent content-no="1">
-          <div class="my_profile_image_box">
-            <img :src="getLoginUser.profile_image" class="my_profile_image">
-          </div>
-          <div class="nickname">
-            <Input
-              type="text"
-              label="이름"
-              v-model="user.userName"
-              v-validate="'required|max:20'"
-              data-vv-name="name"
-              :error-messages="errors.first('name')"
-              required
-              @keyup="handleEnter"
-            />
-          </div>
-          <div class ="taste">
-            <Input
-              type="text"
-              label="나의 입맛은?"
-              v-model="user.appetite"
-              v-validate="'required|max:20'"
-              data-vv-name="appetite"
-              :error-messages="errors.first('appetite')"
-              required
-              @keyup="handleEnter"
-            />
-          </div>
+          <v-row justify="space-around">
+            <v-col cols="5">
+              <v-img :src="getLoginUser.profile_image" aspect-ratio="1.7"></v-img>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col
+              cols="8"
+              md="4">
+              <v-text-field
+                v-model="user.userName"
+                :rules="nameRules"
+                label="이름"
+                required
+                @keyup.enter="handleEnter"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col
+              cols="8"
+              md="4">
+              <v-text-field
+                v-model="user.appetite"
+                label="나의 입맛은?"
+                required
+                @keyup.enter="handleEnter"
+              ></v-text-field>
+            </v-col>
+          </v-row>
         </PageContent>
 
         <PageContent content-no="2">
-          <div class="my_profile_image_box">
-            <img :src="getLoginUser.profile_image" class="my_profile_image">
-          </div>
-          <div class="company">
-            <Input
-              type="text"
-              label="회사명"
-              v-model="family.companyName"
-              v-validate="'required|max:20'"
-              data-vv-name="companyName"
-              :error-messages="errors.first('companyName')"
-              required
-              @keyup="handleEnter"
-            />
-          </div>
-          <div class="famname">
-            <Input
-              type="text"
-              label="점심팸 이름"
-              v-model="family.familyName"
-              v-validate="'required|max:20'"
-              data-vv-name="famName"
-              :error-messages="errors.first('famName')"
-              required
-              @keyup="handleEnter"
-            />
-          </div>
+          <v-row justify="space-around">
+            <v-col cols="5">
+              <v-img :src="getLoginUser.profile_image" aspect-ratio="1.7"></v-img>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col
+              cols="8"
+              md="4">
+              <v-text-field
+                v-model="family.companyName"
+                label="회사명"
+                required
+                @keyup.enter="handleEnter"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col
+              cols="8"
+              md="4">
+              <v-text-field
+                v-model="family.familyName"
+                label="점심팸 이름"
+                required
+                @keyup.enter="handleEnter"
+              ></v-text-field>
+            </v-col>
+          </v-row>
         </PageContent>
       </Page>
-      <div class="buttons">
-          <Button class="default" @click="prevPage()">이전</Button>
-          <Button class="primary" @click="nextPage()">다음</Button>
-      </div>
+      <v-footer
+        app
+        class="justify-center">
+        <div class="my-5">
+          <v-btn
+            rounded
+            outlined
+            color="primary"
+            class="mx-2"
+            @click="prevPage"
+          >이전</v-btn>
+          <v-btn
+            rounded
+            color="primary"
+            class="mx-2"
+            @click="nextPage"
+          >다음</v-btn>
+        </div>
+      </v-footer>
   </div>
 </template>
 
 <script>
-import Button from '@/components/ui/Button'
-import SubTitle from '@/components/ui/SubTitle'
-import Input from '@/components/ui/Input'
 import Page from '@/components/ui/Page'
 import PageContent from '@/components/ui/PageContent'
 import { mapGetters } from 'vuex'
@@ -83,7 +102,7 @@ export default {
   },
   name: 'StartFamily',
   components: {
-    SubTitle, Input, Button, Page, PageContent
+    Page, PageContent
   },
   data: () => ({
     user: {
@@ -155,34 +174,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-button.base_button.default {
-  width: 20%;
-}
-
-button.base_button.primary {
-  width: 50%;
-}
-
-.company,.nickname {
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.buttons {
-  width: 100%;
-  position: fixed;
-  bottom: 50px;
-}
-
-.my_profile_image
-{
-  margin-top: 50px;
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  object-fit: cover;
-}
-
-</style>
