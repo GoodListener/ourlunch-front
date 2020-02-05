@@ -49,8 +49,8 @@
 
 <script>
 import { getFamilyRestaurant } from '@/api/index'
-import evaluateRestaurantModal from './modals/evaluateRestaurant'
-import confirmDeleteModal from './modals/confirmDelete'
+import evaluateRestaurantModal from '@/components/modals/evaluateRestaurant'
+import confirmDeleteModal from '@/components/modals/confirmDelete'
 
 export default {
   name: 'FamRestaurants',

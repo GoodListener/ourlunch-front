@@ -94,7 +94,7 @@
 <script>
 import Page from '@/components/ui/Page'
 import PageContent from '@/components/ui/PageContent'
-import { getSearchRestaurant } from '../api/index.js'
+import { getSearchRestaurant } from '@/api/index.js'
 import KakaoMap from '@/components/KakaoMap'
 import RestaurantCategory from '@/data/restaurantCategory.json'
 import { mapGetters } from 'vuex'

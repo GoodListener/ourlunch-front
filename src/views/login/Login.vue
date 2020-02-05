@@ -7,7 +7,7 @@
       <v-toolbar-title>우리의<span @click="lotto">점</span>심</v-toolbar-title>
     </v-app-bar>
     <v-content>
-      <img width="100%" src="../assets/loginpage_img.png">
+      <img width="100%" src="../../assets/loginpage_img.png">
     </v-content>
     <v-footer
       app

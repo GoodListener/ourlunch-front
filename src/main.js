@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './routes'
 import * as VeeValidate from 'vee-validate'
 import validateConfig from './veevalidate/config'
 import VModal from 'vue-js-modal'
