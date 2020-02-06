@@ -20,7 +20,6 @@ import Preview from '@/views/restaurant/add/Preview'
 import Pick from '@/views/restaurant/add/Pick'
 import FamMembers from '@/views/member/FamMembers'
 import FamRestaurants from '@/views/restaurant/FamRestaurants'
-import Lotto from '@/components/Lotto'
 
 Vue.use(Router)
 
@@ -132,11 +131,6 @@ export default new Router({
       path: '/famRestaurants',
       name: 'FamRestaurants',
       component: FamRestaurants
-    },
-    {
-      path: '/lotto',
-      name: 'Lotto',
-      component: Lotto
     }
   ]
 })

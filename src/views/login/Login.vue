@@ -4,7 +4,7 @@
       app
       color="indigo"
       dark>
-      <v-toolbar-title>우리의<span @click="lotto">점</span>심</v-toolbar-title>
+      <v-toolbar-title>우리의점심</v-toolbar-title>
     </v-app-bar>
     <v-content>
       <img width="100%" src="../../assets/loginpage_img.png">
@@ -42,9 +42,6 @@ export default {
     failure: function (result) {
       // eslint-disable-next-line 
       console.error(result)
-    },
-    lotto: function () {
-      this.$router.push('lotto')
     }
   }
 }
