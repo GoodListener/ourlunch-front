@@ -7,49 +7,24 @@ import loadScriptOnce from 'load-script-once'
 
 export default {
   name: 'KakaoMap',
-  props: ['place'],
+  props: ['placeInfo'],
   data: () => ({
-    map: {},
-    kakao: {},
-    infoWindow: {}
+    map: {}
   }),
-  mounted: () => {
-    this.info = {lat: 37.5073734599034, lng: 127.05683538326616}
+  created () {
     loadScriptOnce('https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9371d0a85e46655cd886905c0cab174c')
       .then(() => {
         window.kakao.maps.load(() => {
           this.map = new window.kakao.maps.Map(document.getElementById('map'), {
-            center: new window.kakao.maps.LatLng(this.info.lat, this.info.lng),
+            center: new window.kakao.maps.LatLng(this.placeInfo.y, this.placeInfo.x),
             level: 3
           })
         })
       })
       .catch((e) => {
+        // eslint-disable-next-line
         console.error(e)
       })
-  }, // watch에다가 place를 넣기
-  watch: {
-    place: function (newPlace) {
-      this.setCenter(newPlace)
-    }
-  },
-  methods: {
-    setCenter: (place) => {
-      this.map.relayout()
-      const pos = new window.kakao.maps.LatLng(place.y, place.x)
-      this.map.setCenter(pos)
-
-      if (this.infoWindow) {
-        this.infoWindow.close()
-      }
-
-      this.infoWindow = new window.kakao.maps.InfoWindow({
-        position: pos,
-        content: '<div style="padding: 5px;">' + place.place_name + '</div>'
-      })
-
-      this.infoWindow.open(this.map)
-    }
   }
 }
 
