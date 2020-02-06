@@ -15,6 +15,9 @@ import ChoiceLunch2 from '@/views/choice/Restaurants'
 import ChoiceLunchLoading from '@/views/choice/Loading'
 import ChoiceLunchResult from '@/views/choice/Result'
 import Restaurant from '@/views/restaurant/add/Restaurant'
+import Search from '@/views/restaurant/add/Search'
+import Preview from '@/views/restaurant/add/Preview'
+import Pick from '@/views/restaurant/add/Pick'
 import FamMembers from '@/views/member/FamMembers'
 import FamRestaurants from '@/views/restaurant/FamRestaurants'
 import Lotto from '@/components/Lotto'
@@ -99,8 +102,26 @@ export default new Router({
     },
     {
       path: '/restaurant',
+      redirect: '/restaurant/search',
       name: 'Restaurant',
-      component: Restaurant
+      component: Restaurant,
+      children: [
+        {
+          path: 'search',
+          name: 'search',
+          component: Search
+        },
+        {
+          path: 'preview',
+          name: 'preview',
+          component: Preview
+        },
+        {
+          path: 'pick',
+          name: 'pick',
+          component: Pick
+        }
+      ]
     },
     {
       path: '/famMembers',
