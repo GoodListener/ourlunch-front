@@ -6,6 +6,8 @@ import Join from '@/views/member/join/Join'
 import JoinFam from '@/views/member/join/JoinFam'
 import JoinComplete from '@/views/member/join/JoinComplete'
 import StartFamily from '@/views/start/StartFamily'
+import MyInfo from '@/views/start/MyInfo'
+import FamilyInfo from '@/views/start/FamilyInfo'
 import StartComplete from '@/views/start/StartComplete'
 import Main from '@/views/Main'
 import ChoiceLunch1 from '@/views/choice/Members'
@@ -49,8 +51,21 @@ export default new Router({
     },
     {
       path: '/startFamily',
+      redirect: '/startFamily/myInfo',
       name: 'StartFamily',
-      component: StartFamily
+      component: StartFamily,
+      children: [
+        {
+          path: 'myInfo',
+          name: 'myInfo',
+          component: MyInfo
+        },
+        {
+          path: 'familyInfo',
+          name: 'familyInfo',
+          component: FamilyInfo
+        }
+      ]
     },
     {
       path: '/startComplete',

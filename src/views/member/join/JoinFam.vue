@@ -68,7 +68,11 @@ export default {
       isJoined: false,
       companyName: '',
       familyName: ''
-    }
+    },
+    nameRules: [
+      v => !!v || '이름을 입력해주세요.',
+      v => v.length >= 2 || '이름을 2자 이상 입력해주세요.'
+    ]
   }),
   computed: {
     ...mapGetters([
