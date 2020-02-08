@@ -8,9 +8,7 @@ import myFamilyData from '@/apiFakeData/fakeMyFamilyApiData.json'
 
 export default class MockContainer {
   constructor () {
-    if (process.env.NODE_ENV === 'development') {
-      this.mock = new MockAdapter(axios)
-    }
+    this.mock = new MockAdapter(axios)
   }
 
   init () {
