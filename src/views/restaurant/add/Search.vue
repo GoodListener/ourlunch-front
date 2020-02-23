@@ -8,7 +8,7 @@
       <v-text-field
         v-model="restaurantName"
         :rules="nameRules"
-        label="식당"
+        label="식당 이름 입력"
         required
         @keyup.enter="searchRestaurant"
       ></v-text-field>
@@ -44,7 +44,7 @@ export default {
       restaurants: [],
       place: {},
       nameRules: [
-        v => !!v || '이름을 입력해주세요.',
+        v => !!v || '식당 이름을 입력해주세요.',
         v => v.length >= 2 || '이름을 2자 이상 입력해주세요.'
       ]
     }
