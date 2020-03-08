@@ -9,7 +9,6 @@
               :rules="nameRules"
               label="이름"
               required
-              @change="updateValue"
             ></v-text-field>
         </v-col>
     </v-row>
@@ -48,9 +47,6 @@ export default {
     this.myInfo.appetite = this.user.appetite;
   },
   methods: {
-    updateValue () {
-      this.$emit('fetchedMyInfo', this.myInfo);
-    }
   }
 }
 </script>

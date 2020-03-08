@@ -39,14 +39,10 @@ export default {
     
   },
   mounted: function () {
-    if (!this.getLoginUser.isLogined) {
-      this.$router.push('/login')
-    }
+    
   },
   computed: {
-    ...mapGetters([
-      'getLoginUser'
-    ])
+    
   },
   methods: {
     startFamily: function () {

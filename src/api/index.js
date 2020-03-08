@@ -1,12 +1,28 @@
 import axios from 'axios'
-// import getSearchRestaurants from './getRestaurants'
 
 const api = {
-  baseUrl: '/api/'
+  baseUrl: '/api/v1/'
 }
 
-function getMyProfile () {
-  return axios.get(`${api.baseUrl}profile/me`)
+function getMyProfile (accessToken) {
+  return axios({
+    method: 'GET',
+    url: `${api.baseUrl}member/profile`,
+    headers: {
+      'Authorization': 'Bearer ' + accessToken
+    },
+  })
+}
+
+function postFamily (accessToken, data) {
+  return axios({
+    method: 'POST',
+    url: `${api.baseUrl}initialization`,
+    data: data,
+    header: {
+      'Authorization': 'Bearer ' + accessToken
+    }
+  })
 }
 
 function getMembers () {
@@ -30,9 +46,11 @@ function getSearchRestaurant () {
 }
 
 export {
+  getMyProfile, // 내가 가입한 정보 가져오기
+  postFamily, // 팸 등록하기
+
   getSearchRestaurant, // 검색한 식당 결과 가져오기
   getFamilyRestaurant, // 내가 속한 패밀리 식당 정보 가져오기
-  getMyProfile, // 내가 가입한 정보 가져오기
   getMyFamily, // 내가 가입한 패밀리정보 가져오기
   getMembers, // 내가 속한 패밀리 팸원 가져오기
   getFamily // 패밀리 정보 가져오기 (패밀리 이름으로)

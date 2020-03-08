@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --dest C:\\Users\\EC\\git\\ourlunch-back\\src\\main\\resources\\static",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -18,7 +18,8 @@
     "vue-js-modal": "^1.3.31",
     "vue-router": "^3.1.3",
     "vuetify": "^2.0.0",
-    "vuex": "^3.1.1"
+    "vuex": "^3.1.1",
+    "vuex-persistedstate": "^2.7.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar>
-      축하합니다! {{ getLoginUser.name }}님<br>점심팸 등록 완료!
+      축하합니다! ??님<br>점심팸 등록 완료!
     </v-app-bar>
     <v-footer
       app
@@ -24,17 +24,10 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'StartComplete',
   mounted: function () {
-    if (!this.getLoginUser.isLogined) {
-      this.$router.push('login')
-    }
-    if (!this.getLoginUser.isFullAuth) {
-      this.$router.push('./')
-    }
+    
   },
   computed: {
-    ...mapGetters([
-      'getLoginUser'
-    ])
+    
   },
   components: {
     

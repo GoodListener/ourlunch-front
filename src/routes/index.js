@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
-import Login from '@/views/login/Login'
 import Join from '@/views/member/join/Join'
 import JoinFam from '@/views/member/join/JoinFam'
 import JoinComplete from '@/views/member/join/JoinComplete'
@@ -30,11 +29,6 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
     },
     {
       path: '/join/:familyName',

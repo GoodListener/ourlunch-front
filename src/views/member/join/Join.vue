@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import kakaoAuth from '@/utils/kakaoAuth'
 import { processLogin, checkStatus } from '@/utils/processAuth'
 
 export default {
@@ -27,21 +26,8 @@ export default {
   },
   mounted: function () {
     processLogin(this)
-    this.$nextTick(function () {
-      kakaoAuth('kakaoLoginButton', this.success, this.failure)
-    })
   },
   methods: {
-    // eslint-disable-next-line 
-    success: function (data) {
-      window.Kakao.Auth.getStatusInfo(
-        (data) => { checkStatus(data, this) }
-      )
-    },
-    failure: function (result) {
-      // eslint-disable-next-line
-      console.error(result)
-    }
   }
 }
 </script>

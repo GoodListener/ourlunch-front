@@ -8,7 +8,6 @@
               v-model="familyInfo.companyName"
               label="회사명"
               required
-              @change="updateValue"
             ></v-text-field>
         </v-col>
     </v-row>
@@ -48,9 +47,7 @@ export default {
     this.familyInfo.familyName = this.family.familyName;
   },
   methods: {
-    updateValue () {
-      this.$emit('fetchedFamilyInfo', this.familyInfo);
-    }
+    
   }
 }
 </script>
