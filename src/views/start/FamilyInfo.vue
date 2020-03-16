@@ -5,8 +5,9 @@
             cols="8"
             md="4">
             <v-text-field
-              v-model="familyInfo.companyName"
+              v-model="userFamily.companyName"
               label="회사명"
+              @change="updateValue"
               required
             ></v-text-field>
         </v-col>
@@ -16,9 +17,10 @@
             cols="8"
             md="4">
             <v-text-field
-              v-model="familyInfo.familyName"
+              v-model="userFamily.familyName"
               label="점심팸 이름"
               :rules="nameRules"
+              @change="updateValue"
               required
             ></v-text-field>
         </v-col>
@@ -29,25 +31,18 @@
 <script>
 
 export default {
-  props: ['family'],
+  props: ['userFamily'],
   data () {
     return {
-      familyInfo: {
-        isJoined: false,
-        companyName: '',
-        familyName: ''
-      },
       nameRules: [
         v => !!v || '점심팸 이름을 입력해주세요.'
       ]
     }
   },
-  created () {
-    this.familyInfo.companyName = this.family.companyName;
-    this.familyInfo.familyName = this.family.familyName;
-  },
   methods: {
-    
+    updateValue () {
+      this.$emit('fetchedUserFamilyInfo', this.userFamily);
+    }
   }
 }
 </script>

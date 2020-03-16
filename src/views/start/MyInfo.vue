@@ -5,9 +5,10 @@
             cols="8"
             md="4">
             <v-text-field
-              v-model="myInfo.userName"
+              v-model="userFamily.userName"
               :rules="nameRules"
               label="이름"
+              @change="updateValue"
               required
             ></v-text-field>
         </v-col>
@@ -17,8 +18,9 @@
             cols="8"
             md="4">
             <v-text-field
-              v-model="myInfo.appetite"
+              v-model="userFamily.appetite"
               label="나의 입맛은?"
+              @change="updateValue"
               required
             ></v-text-field>
         </v-col>
@@ -29,24 +31,19 @@
 <script>
 
 export default {
-  props: ['user'],
+  props: ['userFamily'],
   data () {
     return {
-      myInfo: {
-        userName: '',
-        appetite: ''
-      },
       nameRules: [
         v => !!v || '이름을 입력해주세요.',
         v => v.length >= 2 || '이름을 2자 이상 입력해주세요.'
       ]
     }
   },
-  created () {
-    this.myInfo.userName = this.user.userName;
-    this.myInfo.appetite = this.user.appetite;
-  },
   methods: {
+    updateValue () {
+      this.$emit('fetchedUserFamilyInfo', this.userFamily);
+    }
   }
 }
 </script>

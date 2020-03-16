@@ -11,9 +11,8 @@
       </v-row>
       <transition name="fade">
         <router-view
-          :user="user"
-          @fetchedFamilyInfo="updateFamilyInfo"
-          :family="family"
+          :userFamily="userFamily"
+          @fetchedUserFamilyInfo="fetchedUserFamilyInfo"
         />
       </transition>
       <v-footer
@@ -44,29 +43,27 @@ export default {
   components: {
   },
   data: () => ({
-    user: {
+    userFamily: {
       userName: '',
-      appetite: ''
-    },
-    family: {
-      isJoined: false,
+      appetite: '',
       companyName: '',
       familyName: ''
     }
   }),
   mounted: function () {
-    if (!this.getToken) {
-      store.commit('token/setToken', this.$route.query.access_token);
-      let query = Object.assign({}, this.$route.query);
-      delete query.access_token;
-      this.$router.replace({ query });
-    }
+    this.storeToken();
   },
   methods: {
-    updateFamilyInfo (family) {
-      postFamily(this.$store.state.accessToken, family).then((result) => {
-        window.console.log(result);
-      })
+    storeToken: function () {
+      if (!this.getToken) {
+        store.commit('token/setToken', this.$route.query.access_token);
+        let query = Object.assign({}, this.$route.query);
+        delete query.access_token;
+        this.$router.replace({ query });
+      }
+    },
+    fetchedUserFamilyInfo (userFamily) {
+      console.log(userFamily);
     },
     nextPage: function () {
       switch (this.$router.currentRoute.name) {
@@ -74,7 +71,10 @@ export default {
           this.$router.push('familyInfo');
           break;
         case 'familyInfo':
-          this.$router.push('/startComplete');
+          postFamily(this.$store.state.accessToken, this.userFamily).then((result) => {
+            console.log(result);
+            this.$router.push('/startComplete');
+          })
           break;
       }
     }

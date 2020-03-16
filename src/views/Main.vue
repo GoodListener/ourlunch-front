@@ -40,12 +40,7 @@ import { store } from '../store'
 export default {
   name: 'Main',
   mounted: function () {
-    if (!this.getToken) {
-      store.commit('token/setToken', this.$route.query.access_token);
-      let query = Object.assign({}, this.$route.query);
-      delete query.access_token;
-      this.$router.replace({ query });
-    }
+    this.storeToken();
     getMyProfile(this.getToken).then((result) => {
       window.console.log(result);
     })
@@ -56,6 +51,14 @@ export default {
     ])
   },
   methods: {
+    storeToken: function () {
+      if (!this.getToken) {
+        store.commit('token/setToken', this.$route.query.access_token);
+        let query = Object.assign({}, this.$route.query);
+        delete query.access_token;
+        this.$router.replace({ query });
+      }
+    },
     choiceLunch: function () {
       this.$router.push('choiceLunch1')
     },

@@ -32,18 +32,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { devLogin } from '../api/index'
 
 export default {
   name: 'Home',
-  components: {
-    
-  },
   mounted: function () {
-    
+    devLogin().then((result) => {console.log(result)})
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {
     startFamily: function () {
       this.$router.push('StartFamily')

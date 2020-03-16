@@ -1,7 +1,14 @@
 import axios from 'axios'
 
 const api = {
-  baseUrl: '/api/v1/'
+  baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/dev/api/v1/' : '/api/v1/'
+}
+
+function devLogin () {
+  return axios({
+    method: 'POST',
+    url: 'http://localhost:8080/admin/login'
+  })
 }
 
 function getMyProfile (accessToken) {
@@ -46,6 +53,7 @@ function getSearchRestaurant () {
 }
 
 export {
+  devLogin,
   getMyProfile, // 내가 가입한 정보 가져오기
   postFamily, // 팸 등록하기
 

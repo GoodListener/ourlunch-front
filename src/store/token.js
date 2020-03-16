@@ -1,5 +1,5 @@
 const initialState = {
-    token: ''
+    token: 'abcd'
 }
 
 const mutations = {
