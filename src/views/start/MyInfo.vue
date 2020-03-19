@@ -1,31 +1,21 @@
 <template>
-  <div>
-    <v-row>
-        <v-col
-            cols="8"
-            md="4">
-            <v-text-field
-              v-model="userFamily.userName"
-              :rules="nameRules"
-              label="이름"
-              @change="updateValue"
-              required
-            ></v-text-field>
-        </v-col>
-    </v-row>
-    <v-row>
-        <v-col
-            cols="8"
-            md="4">
-            <v-text-field
-              v-model="userFamily.appetite"
-              label="나의 입맛은?"
-              @change="updateValue"
-              required
-            ></v-text-field>
-        </v-col>
-    </v-row>
-  </div>
+  <v-content>
+    <v-text-field
+      class="mt-10 px-5"
+      v-model="userFamily.userName"
+      :rules="nameRules"
+      label="이름"
+      @change="updateValue"
+      required
+    ></v-text-field>
+    <v-text-field
+      class="mt-6 px-5"
+      v-model="userFamily.appetite"
+      label="나의 입맛은?"
+      @change="updateValue"
+      required
+    ></v-text-field>
+  </v-content>
 </template>
 
 <script>

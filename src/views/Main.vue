@@ -1,35 +1,33 @@
 <template>
-  <div>
+  <v-card>
     <v-app-bar>
-      <span>밥먹자(우점 메인 타이틀)</span>
+      <v-toolbar-title class="pl-5">우리의 점심</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-avatar color="orange" size="48" class="white--text">스팸</v-avatar>
+      <v-avatar color="orange" size="48" class="white--text">팸이름</v-avatar>
     </v-app-bar>
     <v-content>
       <p>토큰 : {{getToken}}</p>
       <p>초대 링크: link</p>
-      <p>메인 영역을 어떻게 채울까?</p>
+      <div>
+        <v-btn @click="handleRestaurantButton">
+          <v-icon>mdi-plus</v-icon>
+            식당 등록하기
+          </v-btn>
+      </div>
+      <div>
+        <v-btn @click="choiceLunch">오늘의 점심은?</v-btn>
+      </div>
+      <div>
+        <v-btn @click="handlefamRestaurantsButton">식당 목록</v-btn>
+        <v-btn @click="handlefamMembersButton">멤버 목록</v-btn>
+      </div>
     </v-content>
-    <v-footer>
-      <div>
-        <v-btn text small @click="handleRestaurantButton">
-          <v-icon>mdi-plus</v-icon>&nbsp;
-          식당 등록하기
-        </v-btn>
-      </div>
-      <div>
-        <v-btn text small @click="choiceLunch">오늘의 점심은?</v-btn>
-      </div>
-      <div>
-        <div class="float-left">
-          <v-btn text small @click="handlefamRestaurantsButton">식당 목록</v-btn>
-        </div>
-        <div class="float-right">
-          <v-btn text small @click="handlefamMembersButton">멤버 목록</v-btn>
-        </div>
-      </div>
+    <v-footer
+      absolute
+    >
+      
     </v-footer>
-  </div>
+  </v-card>
 </template>
 
 <script>

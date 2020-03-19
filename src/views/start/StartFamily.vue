@@ -1,14 +1,11 @@
 <template>
-  <div>
+  <v-card>
     <v-app-bar>
-      우리의점심 점심팸 시작하기
+      <v-btn icon>
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-toolbar-title class="pl-5">점심팸 시작하기</v-toolbar-title>
     </v-app-bar>
-      <v-row justify="space-around">
-        <v-col cols="5">
-            <span>{{getToken}}</span>
-            <v-img aspect-ratio="1.7"></v-img>
-        </v-col>
-      </v-row>
       <transition name="fade">
         <router-view
           :userFamily="userFamily"
@@ -16,7 +13,7 @@
         />
       </transition>
       <v-footer
-        app
+        absolute
         class="justify-center">
         <div class="my-5">
           <v-btn
@@ -27,7 +24,7 @@
           >다음</v-btn>
         </div>
       </v-footer>
-  </div>
+  </v-card>
 </template>
 
 <script>

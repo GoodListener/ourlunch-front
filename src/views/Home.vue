@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <v-app-bar 
-      app
-      color="indigo"
-      dark>
-      <v-toolbar-title>우리의점심</v-toolbar-title>
+  <v-card>
+    <v-app-bar>
+      <v-btn icon></v-btn>
+      <v-toolbar-title class="pl-5">우리의 점심</v-toolbar-title>
     </v-app-bar>
     <v-content>
       
     </v-content>
     <v-footer
-      app
+      absolute
       class="justify-center">
       <div class="my-5">
         <v-btn
@@ -27,7 +25,7 @@
         >새로운 점심 시작</v-btn>
       </div>
     </v-footer>
-  </div>
+  </v-card>
 </template>
 
 <script>

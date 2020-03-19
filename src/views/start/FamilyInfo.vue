@@ -1,30 +1,20 @@
 <template>
   <div>
-    <v-row>
-        <v-col
-            cols="8"
-            md="4">
-            <v-text-field
-              v-model="userFamily.companyName"
-              label="회사명"
-              @change="updateValue"
-              required
-            ></v-text-field>
-        </v-col>
-    </v-row>
-    <v-row>
-        <v-col
-            cols="8"
-            md="4">
-            <v-text-field
-              v-model="userFamily.familyName"
-              label="점심팸 이름"
-              :rules="nameRules"
-              @change="updateValue"
-              required
-            ></v-text-field>
-        </v-col>
-    </v-row>
+    <v-text-field
+      class="mt-10 px-5"
+      v-model="userFamily.companyName"
+      label="회사명"
+      @change="updateValue"
+      required
+    ></v-text-field>
+    <v-text-field
+      class="mt-6 px-5"
+      v-model="userFamily.familyName"
+      label="점심팸 이름"
+      :rules="nameRules"
+      @change="updateValue"
+      required
+    ></v-text-field>
   </div>
 </template>
 
