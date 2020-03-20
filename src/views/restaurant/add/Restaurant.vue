@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <v-card>
     <v-app-bar>
       <v-btn text small @click="prevPage()">
         <v-icon dark right>mdi-arrow-left</v-icon>&nbsp;
       </v-btn>
-      식당 등록하기
+      <v-toolbar-title class="pl-5">식당 등록</v-toolbar-title>
     </v-app-bar>
     <transition name="fade">
       <router-view
@@ -16,7 +16,8 @@
       />
     </transition>
     <v-footer
-      app
+      v-if="this.$router.currentRoute.name != 'search'"
+      absolute
       class="justify-center">
       <div class="my-5">
         <v-btn
@@ -35,7 +36,7 @@
         >식당 등록</v-btn>
       </div>
     </v-footer>
-  </div>
+  </v-card>
 </template>
 <script>
 

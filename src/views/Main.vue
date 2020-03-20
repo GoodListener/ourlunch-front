@@ -3,11 +3,9 @@
     <v-app-bar>
       <v-toolbar-title class="pl-5">우리의 점심</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-avatar color="orange" size="48" class="white--text">팸이름</v-avatar>
+      <v-avatar color="orange" size="48" class="white--text">{{profile.familyName}}</v-avatar>
     </v-app-bar>
     <v-content>
-      <p>토큰 : {{getToken}}</p>
-      <p>초대 링크: link</p>
       <div>
         <v-btn @click="handleRestaurantButton">
           <v-icon>mdi-plus</v-icon>
@@ -40,7 +38,10 @@ export default {
   mounted: function () {
     this.storeToken();
     getMyProfile(this.getToken).then((result) => {
-      window.console.log(result);
+      if (result.data.code == 200) {
+        this.profile = result.data.data;
+        window.console.log(this.profile)
+      }
     })
   },
   computed: {
@@ -48,6 +49,9 @@ export default {
       'getToken'
     ])
   },
+  data: () => ({
+    profile: {}
+  }),
   methods: {
     storeToken: function () {
       if (!this.getToken) {

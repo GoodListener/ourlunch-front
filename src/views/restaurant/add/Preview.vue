@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <v-content class="map_content">
     <div v-if="!selectPlace.id">식당을 검색해주세요.</div>
     <KakaoMap :placeInfo="selectPlace"></KaKaoMap>
-  </div>
+  </v-content>
 </template>
 
 <script>
@@ -15,3 +15,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.map_content {
+  height: calc(100% - 64px - 88px);
+}
+</style>

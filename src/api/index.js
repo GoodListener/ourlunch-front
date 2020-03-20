@@ -32,8 +32,8 @@ function postFamily (accessToken, data) {
   })
 }
 
-function getMembers () {
-  return axios.get(`${api.baseUrl}member`)
+function getMembers (accessToken, familyId) {
+  return axios({}).get(`${api.baseUrl}member`)
 }
 
 function getFamily () {

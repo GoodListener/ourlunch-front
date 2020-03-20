@@ -1,22 +1,18 @@
 <template>
   <div>
-    <v-row>
-      <v-col
-        cols="8"
-        md="4"
-      >
-      <v-text-field
-        v-model="restaurantName"
-        :rules="nameRules"
-        label="식당 이름 입력"
-        required
-        @keyup.enter="searchRestaurant"
-      ></v-text-field>
-      </v-col>
-    </v-row>
+    <v-text-field
+      class="mt-10 px-5"
+      v-model="restaurantName"
+      :rules="nameRules"
+      label="식당 이름 입력"
+      required
+      @keyup.enter="searchRestaurant"
+    ></v-text-field>
     <v-list>
-      <v-list-item
+      <template
         v-for="restaurant in restaurants"
+      >
+      <v-list-item
         :key="restaurant.key"
         color="primary"
         @click="selectRestaurant(restaurant)"
@@ -29,6 +25,8 @@
           <v-list-item-action-text v-text="restaurant.distance + 'm'"></v-list-item-action-text>
         </v-list-item-action>
       </v-list-item>
+      <v-divider :key="restaurant.key"></v-divider>
+    </template>
     </v-list>
   </div>
 </template>

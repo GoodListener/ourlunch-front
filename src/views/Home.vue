@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { devLogin } from '../api/index'
 
 export default {
