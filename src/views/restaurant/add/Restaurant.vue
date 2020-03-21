@@ -1,8 +1,8 @@
 <template>
   <v-card>
     <v-app-bar>
-      <v-btn text small @click="prevPage()">
-        <v-icon dark right>mdi-arrow-left</v-icon>&nbsp;
+      <v-btn icon @click="prevPage()">
+        <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
       <v-toolbar-title>식당 등록</v-toolbar-title>
@@ -17,27 +17,25 @@
         @fetchedCategory="updateCategory"
       />
     </transition>
-    <v-footer
-      v-if="this.$router.currentRoute.name != 'search'"
-      absolute
-      class="justify-center">
-      <div class="my-5">
-        <v-btn
-          v-if="this.$router.currentRoute.name == 'preview'"
-          rounded
-          color="primary"
-          class="mx-2"
-          @click="movePage('pick')"
-        >다음</v-btn>
-        <v-btn
-          v-if="this.$router.currentRoute.name == 'pick' && !!place.id && !!selectCategory"
-          rounded
-          color="primary"
-          class="mx-2"
-          @click="submit"
-        >식당 등록</v-btn>
-      </div>
-    </v-footer>
+    <v-row
+    v-if="this.$router.currentRoute.name != 'search'"
+    align="center" class="mx-5"
+    >
+      <v-btn
+        v-if="this.$router.currentRoute.name == 'preview'"
+        depressed dark large block
+        class="mt-6"
+        color="#FF6559"
+        @click="movePage('pick')"
+      >다음</v-btn>
+      <v-btn
+        v-if="this.$router.currentRoute.name == 'pick' && !!place.id && !!selectCategory"
+        depressed dark large block
+        class="mt-6"
+        color="#FF6559"
+        @click="submit"
+      >식당 등록</v-btn>
+    </v-row>
   </v-card>
 </template>
 <script>

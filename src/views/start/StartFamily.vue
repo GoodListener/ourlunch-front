@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-app-bar>
-      <v-btn icon>
+      <v-btn icon @click="prevPage()">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
@@ -13,18 +13,14 @@
           :userFamily="userFamily"
         />
       </transition>
-      <v-footer
-        absolute
-        class="justify-center">
-        <div class="my-5">
-          <v-btn
-            rounded
-            color="primary"
-            class="mx-2"
-            @click="nextPage"
-          >다음</v-btn>
-        </div>
-      </v-footer>
+      <v-row align="center" class="mx-5">
+        <v-btn
+          depressed dark large block
+          class="mt-6"
+          color="#FF6559"
+          @click="nextPage"
+        >다음</v-btn>
+      </v-row>
   </v-card>
 </template>
 
@@ -59,6 +55,9 @@ export default {
         delete query.access_token;
         this.$router.replace({ query });
       }
+    },
+    prevPage: function () {
+      this.$router.back();
     },
     nextPage: function () {
       switch (this.$router.currentRoute.name) {

@@ -7,7 +7,7 @@
     </v-app-bar>
     <v-content>
       <p>결과 : {{ $route.params.result }}</p>
-      <v-btn text small @click="replay">
+      <v-btn icon @click="replay">
         <v-icon>mdi-refresh</v-icon>&nbsp;
         다시해!
       </v-btn>

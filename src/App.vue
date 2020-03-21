@@ -23,7 +23,6 @@ export default {
 .v-card {
   padding: 0 !important;
   height: 100%;
-  background-color: #FFF !important;
 }
 
 @media (min-width: 720px) {

@@ -1,13 +1,13 @@
 <template>
   <v-card>
     <v-app-bar>
-      <v-btn text small @click="handleMainButton">
+      <v-btn icon @click="handleMainButton">
         <v-icon dark right>mdi-arrow-left</v-icon>&nbsp;
       </v-btn>
       <v-spacer></v-spacer>
       <v-toolbar-title>식당 목록</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text small @click="handleRestaurantButton">
+      <v-btn icon @click="handleRestaurantButton">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-app-bar>

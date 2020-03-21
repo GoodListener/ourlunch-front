@@ -1,6 +1,9 @@
 <template>
   <v-card>
     <v-app-bar>
+      <v-btn icon @click="prevPage()">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
       <v-spacer></v-spacer>
       <v-toolbar-title>점심 멤버</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -20,25 +23,24 @@
         </v-list-item-group>
       </template>
     </v-list>
-    <v-footer
-      absolute
-      class="justify-center">
-      <div class="my-5">
+    <v-row align="center" class="mx-5">
+      <v-col cols="2">
         <v-btn
-          rounded
-          outlined
-          color="primary"
-          class="mx-2"
-          @click="prevPage()"
+          depressed dark large block
+          class="mt-6"
+          color="#342A29"
+          @click="prevPage"
         >이전</v-btn>
+      </v-col>
+      <v-col cols="10">
         <v-btn
-          rounded
-          color="primary"
-          class="mx-2"
-          @click="nextPage()"
+          depressed dark large block
+          class="mt-6"
+          color="#FF6559"
+          @click="nextPage"
         >다음</v-btn>
-      </div>
-    </v-footer>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 

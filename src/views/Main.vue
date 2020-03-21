@@ -4,8 +4,8 @@
       <v-spacer></v-spacer>
       <v-toolbar-title>우리의 점심</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-icon v-if="profile.master" color="orange">mdi-crown</v-icon>
-      <v-avatar color="orange" size="48" class="white--text ml-5">{{profile.familyName}}</v-avatar>
+      <v-icon v-if="profile.master" color="#FF6559">mdi-crown</v-icon>
+      <v-avatar color="#FF6559" size="48" class="white--text ml-5">{{profile.familyName}}</v-avatar>
     </v-app-bar>
     <v-content>
       <div>
