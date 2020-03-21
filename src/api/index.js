@@ -33,7 +33,13 @@ function postFamily (accessToken, data) {
 }
 
 function getMembers (accessToken, familyId) {
-  return axios({}).get(`${api.baseUrl}member`)
+  return axios({
+    method: 'GET',
+    url: `${api.baseUrl}family/${familyId}/members`,
+    header: {
+      'Authorization': 'Bearer ' + accessToken
+    }
+  })
 }
 
 function getFamily () {
@@ -52,14 +58,14 @@ function getSearchRestaurant () {
   return axios.get(`${api.baseUrl}search/fakeRestaurant`) // 가짜 검색 데이터
 }
 
-export {
+export default {
   devLogin,
   getMyProfile, // 내가 가입한 정보 가져오기
   postFamily, // 팸 등록하기
+  getMembers, // 내가 속한 패밀리 팸원 가져오기
 
   getSearchRestaurant, // 검색한 식당 결과 가져오기
   getFamilyRestaurant, // 내가 속한 패밀리 식당 정보 가져오기
   getMyFamily, // 내가 가입한 패밀리정보 가져오기
-  getMembers, // 내가 속한 패밀리 팸원 가져오기
   getFamily // 패밀리 정보 가져오기 (패밀리 이름으로)
 }

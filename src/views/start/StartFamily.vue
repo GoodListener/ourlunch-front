@@ -4,12 +4,13 @@
       <v-btn icon>
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
-      <v-toolbar-title class="pl-5">점심팸 시작하기</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>점심팸 시작하기</v-toolbar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
       <transition name="fade">
         <router-view
           :userFamily="userFamily"
-          @fetchedUserFamilyInfo="fetchedUserFamilyInfo"
         />
       </transition>
       <v-footer
@@ -29,7 +30,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { postFamily } from '../../api/index'
+import api from '../../api/index'
 import { store } from '../../store'
 
 export default {
@@ -59,17 +60,17 @@ export default {
         this.$router.replace({ query });
       }
     },
-    fetchedUserFamilyInfo (userFamily) {
-      console.log(userFamily);
-    },
     nextPage: function () {
       switch (this.$router.currentRoute.name) {
         case 'myInfo':
           this.$router.push('familyInfo');
           break;
         case 'familyInfo':
-          postFamily(this.$store.state.accessToken, this.userFamily).then((result) => {
-            console.log(result);
+          api.postFamily(this.$store.state.accessToken, this.userFamily)
+          .then((result) => {
+            window.console.log(result.data);
+            store.commit('family/setFamilyId', result.data.data.familyId);
+            store.commit('family/setFamilyCode', result.data.data.familyCode);
             this.$router.push('/startComplete');
           })
           break;

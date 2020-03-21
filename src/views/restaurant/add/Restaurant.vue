@@ -4,7 +4,9 @@
       <v-btn text small @click="prevPage()">
         <v-icon dark right>mdi-arrow-left</v-icon>&nbsp;
       </v-btn>
-      <v-toolbar-title class="pl-5">식당 등록</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>식당 등록</v-toolbar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
     <transition name="fade">
       <router-view

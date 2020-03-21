@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <v-card>
     <v-app-bar>
-      오늘의 점심 멤버는?
+      <v-spacer></v-spacer>
+      <v-toolbar-title>점심 멤버</v-toolbar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
     <v-list>
       <template v-for="(famMember, index) in famMembers">
@@ -12,14 +14,14 @@
         >
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title v-text="famMember.memberName"></v-list-item-title>
+              <v-list-item-title v-text="famMember.name"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
       </template>
     </v-list>
     <v-footer
-      app
+      absolute
       class="justify-center">
       <div class="my-5">
         <v-btn
@@ -37,24 +39,35 @@
         >다음</v-btn>
       </div>
     </v-footer>
-  </div>
+  </v-card>
 </template>
 
 <script>
-import { getMembers } from '@/api/index'
+import api from '@/api/index'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ChoiceLunch1',
-  components: {
-    
+  mounted: function () {
+    api.getMembers(this.getToken, this.getFamilyId).then(response => {
+      var result = response.data;
+      console.log(result);
+      if (result.code == 200) {
+        this.famMembers = result.data.members;
+      }
+    })
   },
   data: () => ({
     famMembers: []
   }),
-  mounted: function () {
-    getMembers().then(response => {
-      this.famMembers = response.data
-    })
+  computed: {
+    ...mapGetters('family', [
+      'getFamilyId',
+      'getFamilyCode'
+    ]),
+    ...mapGetters('token', [
+      'getToken'
+    ])
   },
   methods: {
     nextPage: function () {

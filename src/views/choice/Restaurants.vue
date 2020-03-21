@@ -1,47 +1,49 @@
 <template>
-  <div>
-      <v-app-bar>
-        오늘의 식당 후보는?
-      </v-app-bar>
-      <v-list>
-        <template v-for="(restaurant, index) in restaurantList">
-          <v-list-item-group
-            :key="index"
-            color="primary"
-          >
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title v-text="restaurant.RestaurantsName"></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-        </template>
-      </v-list>
-      <v-footer
-        app
-        class="justify-center"
-      >
-        <div class="my-5">
-          <v-btn
-            rounded
-            outlined
-            color="primary"
-            class="mx-2"
-            @click="prevPage()"
-          >이전</v-btn>
-          <v-btn
-            rounded
-            color="primary"
-            class="mx-2"
-            @click="nextPage()"
-          >다음</v-btn>
-        </div>
-      </v-footer>
-  </div>
+  <v-card>
+    <v-app-bar>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>식당 후보</v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-app-bar>
+    <v-list>
+      <template v-for="(restaurant, index) in restaurantList">
+        <v-list-item-group
+          :key="index"
+          color="primary"
+        >
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title v-text="restaurant.RestaurantsName"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </template>
+    </v-list>
+    <v-footer
+      absolute
+      class="justify-center"
+    >
+      <div class="my-5">
+        <v-btn
+          rounded
+          outlined
+          color="primary"
+          class="mx-2"
+          @click="prevPage()"
+        >이전</v-btn>
+        <v-btn
+          rounded
+          color="primary"
+          class="mx-2"
+          @click="nextPage()"
+        >다음</v-btn>
+      </div>
+    </v-footer>
+  </v-card>
 </template>
 
 <script>
-import { getFamilyRestaurant } from '@/api/index'
+import api from '@/api/index'
 
 export default {
   name: 'ChoiceLunch2',
@@ -49,9 +51,7 @@ export default {
     
   },
   mounted: function () {
-    getFamilyRestaurant().then(response => {
-      this.restaurantList = response.data
-    })
+    
   },
   data: () => ({
     restaurantList: []

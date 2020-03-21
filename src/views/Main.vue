@@ -1,9 +1,11 @@
 <template>
   <v-card>
     <v-app-bar>
-      <v-toolbar-title class="pl-5">우리의 점심</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-avatar color="orange" size="48" class="white--text">{{profile.familyName}}</v-avatar>
+      <v-toolbar-title>우리의 점심</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-icon v-if="profile.master" color="orange">mdi-crown</v-icon>
+      <v-avatar color="orange" size="48" class="white--text ml-5">{{profile.familyName}}</v-avatar>
     </v-app-bar>
     <v-content>
       <div>
@@ -23,28 +25,33 @@
     <v-footer
       absolute
     >
-      
     </v-footer>
   </v-card>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import { getMyProfile } from '../api/index'
+import api from '../api/index'
 import { store } from '../store'
 
 export default {
   name: 'Main',
   mounted: function () {
+    // 토큰 store에 저장
     this.storeToken();
-    getMyProfile(this.getToken).then((result) => {
+    // 나의 프로필 저장
+    api.getMyProfile(this.getToken).then((result) => {
       if (result.data.code == 200) {
         this.profile = result.data.data;
-        window.console.log(this.profile)
+        window.console.log(this.profile);
+        this.storeFamilyId(this.profile.familyId);
+        this.storeMaster(this.profile.master)
+        // this.storeFamilyCode(this.profile.familyCode);
       }
     })
   },
   computed: {
+    // store getter
     ...mapGetters('token', [
       'getToken'
     ])
@@ -53,6 +60,7 @@ export default {
     profile: {}
   }),
   methods: {
+    // 저장 함수
     storeToken: function () {
       if (!this.getToken) {
         store.commit('token/setToken', this.$route.query.access_token);
@@ -61,6 +69,17 @@ export default {
         this.$router.replace({ query });
       }
     },
+    storeFamilyId: function (familyId) {
+      store.commit('family/setFamilyId', familyId);
+    },
+    storeFamilyCode: function (familyCode) {
+      store.commit('family/setFamilyCode', familyCode);
+    },
+    storeMaster: function (master) {
+      store.commit('profile/setMaster', master);
+    },
+
+    // 페이지 이동 함수
     choiceLunch: function () {
       this.$router.push('choiceLunch1')
     },

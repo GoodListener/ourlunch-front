@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-app-bar>
+      <v-spacer></v-spacer>
       <v-toolbar-title>{{ $route.params.familyName }}</v-toolbar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
     <v-content>
       점심팸에 합류하기 위해 로그인 해주세요

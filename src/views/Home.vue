@@ -1,8 +1,9 @@
 <template>
   <v-card>
     <v-app-bar>
-      <v-btn icon></v-btn>
-      <v-toolbar-title class="pl-5">우리의 점심</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>우리의 점심</v-toolbar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
     <v-content>
       
@@ -29,12 +30,12 @@
 </template>
 
 <script>
-import { devLogin } from '../api/index'
+import api from '../api/index'
 
 export default {
   name: 'Home',
   mounted: function () {
-    devLogin().then((result) => {console.log(result)})
+    api.devLogin().then((result) => {window.console.log(result)})
   },
   computed: {},
   methods: {

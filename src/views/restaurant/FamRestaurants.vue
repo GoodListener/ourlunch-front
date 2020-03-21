@@ -4,10 +4,11 @@
       <v-btn text small @click="handleMainButton">
         <v-icon dark right>mdi-arrow-left</v-icon>&nbsp;
       </v-btn>
-      <v-toolbar-title class="pl-5">식당 목록</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>식당 목록</v-toolbar-title>
+      <v-spacer></v-spacer>
       <v-btn text small @click="handleRestaurantButton">
-        <v-icon>mdi-plus</v-icon>&nbsp;
-        식당 추가
+        <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-app-bar>
     <v-list>
@@ -48,7 +49,7 @@
 </template>
 
 <script>
-import { getFamilyRestaurant } from '@/api/index'
+import api from '@/api/index'
 import evaluateRestaurantModal from '@/components/modals/evaluateRestaurant'
 import confirmDeleteModal from '@/components/modals/confirmDelete'
 
@@ -89,7 +90,7 @@ export default {
     showGradeModal: false
   }),
   mounted: function () {
-    getFamilyRestaurant().then(response => {
+    api.getFamilyRestaurant().then(response => {
       window.console.log(response.data);
       // this.famRestaurants = response.data
     })

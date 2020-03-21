@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-card>
     <v-row
       class="fill-height"
       align-content="center"
@@ -21,11 +21,11 @@
         ></v-progress-linear>
       </v-col>
     </v-row>
-  </v-container>
+  </v-card>
 </template>
 
 <script>
-import { getFamilyRestaurant } from '@/api/index'
+import api from '@/api/index'
 
 export default {
   name: 'ChoiceLunchLoading',
@@ -33,7 +33,7 @@ export default {
     
   },
   mounted: function () {
-    getFamilyRestaurant().then(response => {
+    api.getFamilyRestaurant().then(response => {
       this.restaurantList = response.data
       this.nextPage()
     })
@@ -46,7 +46,7 @@ export default {
     nextPage: function () {
       setTimeout(() => {
         this.$router.push('choiceLunchResult/' + this.choiceLunch().RestaurantsName)
-      }, 2000)
+      }, 50000)
     },
     choiceLunch: function () {
       const chooseIndex = parseInt(Math.random() * this.restaurantList.length)

@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <v-card>
     <v-app-bar>
-      오늘의 점심은?
+      <v-spacer></v-spacer>
+      <v-toolbar-title>식당 후보</v-toolbar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
     <v-content>
       <p>결과 : {{ $route.params.result }}</p>
@@ -11,7 +13,7 @@
       </v-btn>
     </v-content>
     <v-footer
-      app
+      absolute
       class="justify-center"
     >
       <div class="my-5">
@@ -30,7 +32,7 @@
         >가즈아</v-btn>
       </div>
     </v-footer>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -46,8 +48,6 @@ export default {
   }),
   methods: {
     nextPage: function () {
-      // eslint-disable-next-line
-      console.log('가즈아')
     },
     prevPage: function () {
       this.$router.push('../ChoiceLunch2')
