@@ -5,7 +5,7 @@
       <v-toolbar-title>우리의 점심</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-icon v-if="profile.master" color="#FF6559">mdi-crown</v-icon>
-      <v-avatar color="#FF6559" size="48" class="white--text ml-5">{{profile.familyName}}</v-avatar>
+      <v-avatar color="#FF6559" size="48" class="white--text ml-5">{{profile.family.name}}</v-avatar>
     </v-app-bar>
     <v-content>
       <div>
@@ -43,10 +43,8 @@ export default {
     api.getMyProfile(this.getToken).then((result) => {
       if (result.data.code == 200) {
         this.profile = result.data.data;
-        window.console.log(this.profile);
-        this.storeFamilyId(this.profile.familyId);
+        this.storeFamilyInfo(this.profile.family);
         this.storeMaster(this.profile.master)
-        // this.storeFamilyCode(this.profile.familyCode);
       }
     })
   },
@@ -57,7 +55,9 @@ export default {
     ])
   },
   data: () => ({
-    profile: {}
+    profile: {
+      family: {}
+    }
   }),
   methods: {
     // 저장 함수
@@ -69,11 +69,8 @@ export default {
         this.$router.replace({ query });
       }
     },
-    storeFamilyId: function (familyId) {
-      store.commit('family/setFamilyId', familyId);
-    },
-    storeFamilyCode: function (familyCode) {
-      store.commit('family/setFamilyCode', familyCode);
+    storeFamilyInfo: function (familyInfo) {
+      store.commit('family/setFamilyInfo', familyInfo);
     },
     storeMaster: function (master) {
       store.commit('profile/setMaster', master);

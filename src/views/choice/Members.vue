@@ -53,7 +53,6 @@ export default {
   mounted: function () {
     api.getMembers(this.getToken, this.getFamilyId).then(response => {
       var result = response.data;
-      console.log(result);
       if (result.code == 200) {
         this.famMembers = result.data.members;
       }
@@ -74,7 +73,6 @@ export default {
   methods: {
     nextPage: function () {
       // eslint-disable-next-line
-      console.log(this.famMembers.filter(famMember => famMember.isSelected))
       this.$router.push('choiceLunch2')
     },
     prevPage: function () {

@@ -13,7 +13,6 @@ export default {
     map: {}
   }),
   created () {
-    console.log(this.placeInfo);
     loadScriptOnce('https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9371d0a85e46655cd886905c0cab174c')
       .then(() => {
         window.kakao.maps.load(() => {

@@ -13,8 +13,7 @@
     <v-row align="center" class="mx-5">
         <v-btn
           depressed dark large block
-          class="mt-6"
-          color="#FF6559"
+          class="mt-6 primary"
           @click="gotoMain"
         >우점 시작</v-btn>
       </v-row>

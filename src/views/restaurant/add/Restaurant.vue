@@ -52,9 +52,7 @@ export default {
       this.$router.push(path);
     },
     submit: function () {
-      // eslint-disable-next-line
       console.log(this.place)
-      // eslint-disable-next-line
       console.log(this.selectCategory)
     },
     updateSearchRestaurant (searchRestaurantInfo) {

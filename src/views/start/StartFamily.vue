@@ -16,8 +16,7 @@
       <v-row align="center" class="mx-5">
         <v-btn
           depressed dark large block
-          class="mt-6"
-          color="#FF6559"
+          class="mt-6 primary"
           @click="nextPage"
         >다음</v-btn>
       </v-row>
@@ -67,9 +66,7 @@ export default {
         case 'familyInfo':
           api.postFamily(this.$store.state.accessToken, this.userFamily)
           .then((result) => {
-            window.console.log(result.data);
-            store.commit('family/setFamilyId', result.data.data.familyId);
-            store.commit('family/setFamilyCode', result.data.data.familyCode);
+            store.commit('family/setFamilyInfo', result.data.data.family);
             this.$router.push('/startComplete');
           })
           break;

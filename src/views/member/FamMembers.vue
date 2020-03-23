@@ -63,8 +63,7 @@ export default {
   }),
   computed: {
     ...mapGetters('family', [
-      'getFamilyId',
-      'getFamilyCode'
+      'getFamilyId'
     ]),
     ...mapGetters('token', [
       'getToken'
@@ -74,7 +73,6 @@ export default {
     api.getMembers(this.getToken, this.getFamilyId).then(response => {
       var result = response.data;
       if (result.code == 200) {
-        console.log(result.data.members)
         this.famMembers = result.data.members;
       }
     })

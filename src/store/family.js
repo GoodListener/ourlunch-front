@@ -1,20 +1,21 @@
 const initialState = {
-    familyId: -1,
-    familyCode: ''
+    id: -1,
+    name: '',
+    code: ''
 }
 
 const mutations = {
-    setFamilyId(state, value) {
-        state.familyId = value
-    },
-    setFamilyCode(state, value) {
-        state.familyCode = value
+    setFamilyInfo(state, familyInfo) {
+        state.id = familyInfo.id;
+        state.name = familyInfo.name;
+        state.code = familyInfo.code;
     }
 }
 
 const getters = {
-    'getFamilyId': state => {return state.familyId},
-    'getFamilyCode': state => {return state.familyCode}
+    'getFamilyId': state => {return state.id},
+    'getFamilyCode': state => {return state.code},
+    'getFamily': state => {return state}
 }
 
 export default {

@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <div>
     <v-text-field
       class="mt-10 px-5"
       v-model="userFamily.userName"
@@ -13,7 +13,7 @@
       label="나의 입맛은?"
       required
     ></v-text-field>
-  </v-content>
+  </div>
 </template>
 
 <script>

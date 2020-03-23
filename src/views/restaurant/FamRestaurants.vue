@@ -90,10 +90,9 @@ export default {
     showGradeModal: false
   }),
   mounted: function () {
-    api.getFamilyRestaurant().then(response => {
-      window.console.log(response.data);
-      // this.famRestaurants = response.data
-    })
+    // api.getFamilyRestaurant().then(response => {
+    //   window.console.log(response);
+    // })
   }
 }
 </script>
