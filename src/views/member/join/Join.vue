@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import { processLogin, checkStatus } from '@/utils/processAuth'
+  import {processLogin} from '@/utils/processAuth'
 
-export default {
+  export default {
   name: 'Join',
   components: {
     

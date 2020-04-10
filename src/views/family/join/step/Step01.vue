@@ -49,9 +49,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+  import {mapGetters} from 'vuex'
 
-export default {
+  export default {
   $_veeValidate: {
     validator: 'new'
   },

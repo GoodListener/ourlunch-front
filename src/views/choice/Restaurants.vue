@@ -43,8 +43,6 @@
 </template>
 
 <script>
-import api from '@/api/index'
-
 export default {
   name: 'ChoiceLunch2',
   components: {

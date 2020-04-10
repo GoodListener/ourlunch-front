@@ -48,10 +48,10 @@
 </template>
 
 <script>
-import api from '@/api/index'
-import { mapGetters } from 'vuex'
+  import api from '@/api/v1/index'
+  import {mapGetters} from 'vuex'
 
-export default {
+  export default {
   props: ['title'],
   methods: {
     handleMainButton: function () {

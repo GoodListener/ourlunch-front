@@ -30,35 +30,35 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import api from '../api/index'
-import { store } from '../store'
+  import {mapGetters} from 'vuex'
+  import api from '@/api/v1/index'
+  import {store} from '../store'
 
-export default {
+  export default {
   name: 'Main',
   mounted: function () {
     // 토큰 store에 저장
     this.storeToken();
     // 나의 프로필 저장
-    api.getMyProfile(this.getToken).then((result) => {
-      if (result.data.code == 200) {
-        this.profile = result.data.data;
+    api.getMyProfile(this.getToken).then(response => {
+      if (response.data.code === 200) {
+        this.profile = response.data.body;
         this.storeFamilyInfo(this.profile.family);
         this.storeMaster(this.profile.master)
       }
     })
-  },
-  computed: {
-    // store getter
-    ...mapGetters('token', [
-      'getToken'
-    ])
   },
   data: () => ({
     profile: {
       family: {}
     }
   }),
+  computed: {
+    // store getter
+    ...mapGetters('token', [
+      'getToken'
+    ])
+  },
   methods: {
     // 저장 함수
     storeToken: function () {

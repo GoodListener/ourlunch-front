@@ -6,7 +6,7 @@
       <v-spacer></v-spacer>
     </v-app-bar>
     <v-content>
-      
+
     </v-content>
     <v-footer
       absolute
@@ -17,44 +17,41 @@
           outlined
           color="primary"
           class="mx-2"
-        >링크 받아서 입장하는</v-btn>
+        >링크 받아서 입장하는
+        </v-btn>
         <v-btn
           rounded
           color="primary"
           class="mx-2"
           @click="startFamily"
-        >새로운 점심 시작</v-btn>
+        >새로운 점심 시작
+        </v-btn>
       </div>
     </v-footer>
   </v-card>
 </template>
 
 <script>
-import api from '../api/index'
+  import {mapMutations} from 'vuex'
 
-export default {
-  name: 'Home',
-  mounted: function () {
-    api.devLogin().then((result) => {window.console.log(result)})
-  },
-  computed: {},
-  methods: {
-    startFamily: function () {
-      this.$router.push('StartFamily')
+  export default {
+    name: 'Home',
+    created() {
+      /* eslint-disable */
+    },
+    methods: {
+      ...mapMutations({
+        setToken: 'token/setToken'
+      }),
+      startFamily: function () {
+        this.$router.push({
+          name: "FamilyStartStep01"
+        })
+      }
     }
   }
-}
 </script>
 
 <style scoped>
-.title {
-  margin-bottom: 270px;
-}
-
-.middle {
-  width: 100%;
-  position: fixed;
-  bottom: 150px;
-}
 
 </style>

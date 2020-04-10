@@ -1,4 +1,4 @@
-import api from '@/api/index'
+import api from '@/api/v1/index'
 
 export function processLogin (vm) {
   if (vm.$store.state.loginUser.isLogined) {

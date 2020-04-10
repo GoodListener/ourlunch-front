@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import api from '@/api/index'
+  import api from '@/api/v1/index'
 
-export default {
+  export default {
   name: 'ChoiceLunchLoading',
   components: {
     

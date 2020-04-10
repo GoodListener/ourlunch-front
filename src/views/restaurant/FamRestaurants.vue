@@ -49,11 +49,10 @@
 </template>
 
 <script>
-import api from '@/api/index'
-import evaluateRestaurantModal from '@/components/modals/evaluateRestaurant'
-import confirmDeleteModal from '@/components/modals/confirmDelete'
+  import evaluateRestaurantModal from '@/components/modals/evaluateRestaurant'
+  import confirmDeleteModal from '@/components/modals/confirmDelete'
 
-export default {
+  export default {
   name: 'FamRestaurants',
   components: {
     

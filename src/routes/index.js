@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
+import Login from '@/views/Login'
+import FamilyContainer from '@/views/family/Container'
+import FamilyStartContainer from '@/views/family/start/Container'
+import FamilyStartStep01 from '@/views/family/start/step/Step01'
+import FamilyStartStep02 from '@/views/family/start/step/Step02'
+import FamilyStartComplete from '@/views/family/start/step/Complete'
+import FamilyJoinContainer from '@/views/family/join/Container'
+import FamilyJoinStep01 from '@/views/family/join/step/Step01'
+import FamilyJoinComplete from '@/views/family/join/step/Complete'
 import Join from '@/views/member/join/Join'
-import JoinFam from '@/views/member/join/JoinFam'
-import JoinComplete from '@/views/member/join/JoinComplete'
-import StartFamily from '@/views/start/StartFamily'
-import MyInfo from '@/views/start/MyInfo'
-import FamilyInfo from '@/views/start/FamilyInfo'
-import StartComplete from '@/views/start/StartComplete'
 import Main from '@/views/Main'
 import ChoiceLunch1 from '@/views/choice/Members'
 import ChoiceLunch2 from '@/views/choice/Restaurants'
@@ -19,6 +22,7 @@ import Preview from '@/views/restaurant/add/Preview'
 import Pick from '@/views/restaurant/add/Pick'
 import FamMembers from '@/views/member/FamMembers'
 import FamRestaurants from '@/views/restaurant/FamRestaurants'
+import DevLoginProxy from '@/dev/LoginProxy'
 
 Vue.use(Router)
 
@@ -27,51 +31,68 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/dev/login',
+      component: DevLoginProxy
+    },
+    {
+      path: '/home',
       name: 'Home',
       component: Home
-    },
-    {
-      path: '/join/:familyName',
-      name: 'Join',
-      component: Join
-    },
-    {
-      path: '/joinFam/:familyName',
-      name: 'JoinFam',
-      component: JoinFam
-    },
-    {
-      path: '/joinComplete/:familyName',
-      name: 'JoinComplete',
-      component: JoinComplete
-    },
-    {
-      path: '/startFamily',
-      redirect: '/startFamily/myInfo',
-      name: 'StartFamily',
-      component: StartFamily,
-      children: [
-        {
-          path: 'myInfo',
-          name: 'myInfo',
-          component: MyInfo
-        },
-        {
-          path: 'familyInfo',
-          name: 'familyInfo',
-          component: FamilyInfo
-        }
-      ]
-    },
-    {
-      path: '/startComplete',
-      name: 'StartComplete',
-      component: StartComplete
     },
     {
       path: '/main',
       name: 'Main',
       component: Main
+    },
+    {
+      path: '/family',
+      component: FamilyContainer,
+      children: [
+        {
+          path: 'start',
+          component: FamilyStartContainer,
+          children: [
+            {
+              path: '1',
+              name: 'FamilyStartStep01',
+              component: FamilyStartStep01
+            },
+            {
+              path: '2',
+              name: 'FamilyStartStep02',
+              component: FamilyStartStep02
+            },
+            {
+              path: 'complete',
+              name: 'FamilyStartComplete',
+              component: FamilyStartComplete
+            }
+          ]
+        },
+        {
+          path: 'join',
+          component: FamilyJoinContainer,
+          children: [
+            {
+              path: '1',
+              component: FamilyJoinStep01
+            },
+            {
+              path: 'complete',
+              component: FamilyJoinComplete
+            }
+          ]
+        }
+      ]
+    },
+    {
+      path: '/join/:familyName',
+      name: 'Join',
+      component: Join
     },
     {
       path: '/choiceLunch1',
@@ -125,6 +146,7 @@ export default new Router({
       path: '/famRestaurants',
       name: 'FamRestaurants',
       component: FamRestaurants
-    }
+    },
+
   ]
 })

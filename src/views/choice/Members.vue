@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import api from '@/api/index'
-import { mapGetters } from 'vuex'
+  import api from '@/api/v1/index'
+  import {mapGetters} from 'vuex'
 
-export default {
+  export default {
   name: 'ChoiceLunch1',
   mounted: function () {
     api.getMembers(this.getToken, this.getFamilyId).then(response => {
