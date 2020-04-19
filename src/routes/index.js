@@ -9,8 +9,8 @@ import FamilyStartStep02 from '@/views/family/start/step/Step02'
 import FamilyStartComplete from '@/views/family/start/step/Complete'
 import FamilyJoinContainer from '@/views/family/join/Container'
 import FamilyJoinStep01 from '@/views/family/join/step/Step01'
+import FamilyJoinStep02 from '@/views/family/join/step/Step02'
 import FamilyJoinComplete from '@/views/family/join/step/Complete'
-import Join from '@/views/member/join/Join'
 import Main from '@/views/Main'
 import ChoiceLunch1 from '@/views/choice/Members'
 import ChoiceLunch2 from '@/views/choice/Restaurants'
@@ -79,20 +79,22 @@ export default new Router({
           children: [
             {
               path: '1',
+              name: 'FamilyJoinStep01',
               component: FamilyJoinStep01
             },
             {
+              path: '2',
+              name: 'FamilyJoinStep02',
+              component: FamilyJoinStep02
+            },
+            {
               path: 'complete',
+              name: 'FamilyJoinComplete',
               component: FamilyJoinComplete
             }
           ]
         }
       ]
-    },
-    {
-      path: '/join/:familyName',
-      name: 'Join',
-      component: Join
     },
     {
       path: '/choiceLunch1',

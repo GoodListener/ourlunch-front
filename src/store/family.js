@@ -1,26 +1,26 @@
 const state = {
-    id: -1,
-    name: '',
-    code: ''
+  id: -1,
+  name: '',
+  code: ''
 }
 
 const mutations = {
-    setFamily(state, family) {
-        state.id = family.id;
-        state.name = family.name;
-        state.code = family.code;
-    }
+  setFamily(state, family) {
+    state.id = family.id;
+    state.name = family.name;
+    state.code = family.code;
+  }
 }
 
 const getters = {
-    getFamily(state) {
-        return state
-    }
+  getFamily(state) {
+    return state
+  }
 }
 
 export default {
-    namespaced: true,
-    state: { ...state  },
-    mutations,
-    getters
+  namespaced: true,
+  state: { ...state },
+  mutations,
+  getters
 }

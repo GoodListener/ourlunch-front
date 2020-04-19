@@ -31,12 +31,9 @@
     created() {
       /* eslint-disable */
     },
-    mounted() {
-    },
     data: () => ({
       loginUrl: process.env.VUE_APP_LOGIN_URL
-    }),
-    methods: {}
+    })
   }
 </script>
 <style scoped>

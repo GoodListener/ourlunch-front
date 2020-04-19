@@ -11,8 +11,8 @@
       <div>
         <v-btn @click="handleRestaurantButton">
           <v-icon>mdi-plus</v-icon>
-            식당 등록하기
-          </v-btn>
+          식당 등록하기
+        </v-btn>
       </div>
       <div>
         <v-btn @click="choiceLunch">오늘의 점심은?</v-btn>
@@ -30,66 +30,66 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+  import { mapGetters } from 'vuex'
   import api from '@/api/v1/index'
-  import {store} from '../store'
+  import { store } from '../store'
 
   export default {
-  name: 'Main',
-  mounted: function () {
-    // 토큰 store에 저장
-    this.storeToken();
-    // 나의 프로필 저장
-    api.getMyProfile(this.getToken).then(response => {
-      if (response.data.code === 200) {
-        this.profile = response.data.body;
-        this.storeFamilyInfo(this.profile.family);
-        this.storeMaster(this.profile.master)
+    name: 'Main',
+    mounted: function () {
+      // 토큰 store에 저장
+      this.storeToken();
+      // 나의 프로필 저장
+      api.getMyProfile(this.getToken).then(response => {
+        if (response.data.code === 200) {
+          this.profile = response.data.body;
+          this.storeFamilyInfo(this.profile.family);
+          this.storeMaster(this.profile.master)
+        }
+      })
+    },
+    data: () => ({
+      profile: {
+        family: {}
       }
-    })
-  },
-  data: () => ({
-    profile: {
-      family: {}
-    }
-  }),
-  computed: {
-    // store getter
-    ...mapGetters('token', [
-      'getToken'
-    ])
-  },
-  methods: {
-    // 저장 함수
-    storeToken: function () {
-      if (!this.getToken) {
-        store.commit('token/setToken', this.$route.query.access_token);
-        let query = Object.assign({}, this.$route.query);
-        delete query.access_token;
-        this.$router.replace({ query });
+    }),
+    computed: {
+      // store getter
+      ...mapGetters('token', [
+        'getToken'
+      ])
+    },
+    methods: {
+      // 저장 함수
+      storeToken: function () {
+        if (!this.getToken) {
+          store.commit('token/setToken', this.$route.query.access_token);
+          let query = Object.assign({}, this.$route.query);
+          delete query.access_token;
+          this.$router.replace({ query });
+        }
+      },
+      storeFamilyInfo: function (familyInfo) {
+        store.commit('family/setFamilyInfo', familyInfo);
+      },
+      storeMaster: function (master) {
+        store.commit('profile/setMaster', master);
+      },
+
+      // 페이지 이동 함수
+      choiceLunch: function () {
+        this.$router.push('choiceLunch1')
+      },
+      handleRestaurantButton: function () {
+        this.$router.push('restaurant')
+      },
+      handlefamRestaurantsButton: function () {
+        this.$router.push('famRestaurants')
+      },
+      handlefamMembersButton: function () {
+        this.$router.push('famMembers')
       }
-    },
-    storeFamilyInfo: function (familyInfo) {
-      store.commit('family/setFamilyInfo', familyInfo);
-    },
-    storeMaster: function (master) {
-      store.commit('profile/setMaster', master);
-    },
 
-    // 페이지 이동 함수
-    choiceLunch: function () {
-      this.$router.push('choiceLunch1')
-    },
-    handleRestaurantButton: function () {
-      this.$router.push('restaurant')
-    },
-    handlefamRestaurantsButton: function () {
-      this.$router.push('famRestaurants')
-    },
-    handlefamMembersButton: function () {
-      this.$router.push('famMembers')
     }
-
   }
-}
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar>
-      축하합니다. {{getLoginUser.name}}님<br>점심팸에 가입되었습니다.
+      축하합니다. {{ user.name }}님<br>점심팸에 가입되었습니다.
     </v-app-bar>
     <v-footer
       app
@@ -12,35 +12,44 @@
           color="primary"
           class="mx-2"
           @click="complete"
-        >우리의 점심 시작하기</v-btn>
+        >우리의 점심 시작하기
+        </v-btn>
       </div>
     </v-footer>
   </div>
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+  import { mapGetters } from 'vuex'
 
   export default {
-  name: 'JoinComplete',
-  components: {
-    
-  },
-  data: () => ({
-    user: {
-      userName: '',
-      appetite: ''
-    }
-  }),
-  computed: {
-    ...mapGetters([
-      'getLoginUser'
-    ])
-  },
-  methods: {
-    complete: function () {
-      this.$router.push('../main')
+    name: 'FamilyJoinComplete',
+    created() {
+      /* eslint-disable */
+      const user = this.getUser
+      console.log(user)
+      this.user = {
+        name: user.name,
+        appetite: user.appetite
+      }
+    },
+    data: () => ({
+      user: {
+        name: null,
+        appetite: null
+      }
+    }),
+    computed: {
+      ...mapGetters({
+        getUser: 'user/getUser'
+      })
+    },
+    methods: {
+      complete: function () {
+        this.$router.push({
+          name: 'Main'
+        })
+      }
     }
   }
-}
 </script>

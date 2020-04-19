@@ -26,7 +26,7 @@
 
 <script>
   import api from '@/api/v1/index'
-  import {mapMutations} from 'vuex'
+  import { mapMutations } from 'vuex'
 
   export default {
     name: 'FamilyStartStep02',

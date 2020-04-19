@@ -17,6 +17,7 @@
           outlined
           color="primary"
           class="mx-2"
+          @click="joinFamily"
         >링크 받아서 입장하는
         </v-btn>
         <v-btn
@@ -32,20 +33,40 @@
 </template>
 
 <script>
-  import {mapMutations} from 'vuex'
+  import api from '@/api/v1/index'
+  import { mapMutations } from 'vuex'
 
   export default {
     name: 'Home',
     created() {
       /* eslint-disable */
     },
+    mounted() {
+      this.getProfile()
+    },
     methods: {
       ...mapMutations({
-        setToken: 'token/setToken'
+        setToken: 'token/setToken',
+        setUser: 'user/setUser'
       }),
-      startFamily: function () {
+      getProfile() {
+        api.getMyProfile("accessToken")
+          .then(response => {
+            console.log(response)
+            this.setUser(response.data.body)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      },
+      startFamily() {
         this.$router.push({
           name: "FamilyStartStep01"
+        })
+      },
+      joinFamily() {
+        this.$router.push({
+          name: "FamilyJoinStep01"
         })
       }
     }
