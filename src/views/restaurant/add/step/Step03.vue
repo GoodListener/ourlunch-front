@@ -18,20 +18,21 @@
 </template>
 
 <script>
-import RestaurantCategory from '@/data/restaurantCategory.json'
+  import RestaurantCategory from '@/data/restaurantCategory.json'
 
-export default {
-  props: ['selectPlace'],
-  data () {
-    return {
-      restaurantCategory: RestaurantCategory.category,
-      selectCategory: ''
-    }
-  },
-  methods: {
-    updateValue () {
-      this.$emit('fetchedCategory', this.selectCategory);
+  export default {
+    name: 'RestaurantAddStep03',
+    props: ['selectPlace'],
+    data() {
+      return {
+        restaurantCategory: RestaurantCategory.category,
+        selectCategory: ''
+      }
+    },
+    methods: {
+      updateValue() {
+        this.$emit('fetchedCategory', this.selectCategory);
+      }
     }
   }
-}
 </script>

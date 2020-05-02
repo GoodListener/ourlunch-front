@@ -6,9 +6,10 @@
 
 <script>
   export default {
-    name: 'FamilyContainer'
+    name: "RestaurantContainer"
   }
 </script>
 
 <style scoped>
+
 </style>

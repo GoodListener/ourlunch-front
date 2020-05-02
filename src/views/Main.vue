@@ -30,12 +30,15 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
   import api from '@/api/v1/index'
+  import { mapGetters } from 'vuex'
   import { store } from '../store'
 
   export default {
     name: 'Main',
+    created() {
+      /* eslint-disable */
+    },
     mounted: function () {
       // 토큰 store에 저장
       this.storeToken();
@@ -81,10 +84,14 @@
         this.$router.push('choiceLunch1')
       },
       handleRestaurantButton: function () {
-        this.$router.push('restaurant')
+        this.$router.push({
+          name: 'RestaurantList'
+        })
       },
       handlefamRestaurantsButton: function () {
-        this.$router.push('famRestaurants')
+        this.$router.push({
+          name: 'RestaurantList'
+        })
       },
       handlefamMembersButton: function () {
         this.$router.push('famMembers')

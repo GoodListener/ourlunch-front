@@ -3,9 +3,9 @@
 </template>
 
 <script>
-export default {
-  name: 'FamilyJoinContainer'
-}
+  export default {
+    name: 'FamilyJoinContainer'
+  }
 </script>
 
 <style scoped>

@@ -12,16 +12,17 @@ import FamilyJoinStep01 from '@/views/family/join/step/Step01'
 import FamilyJoinStep02 from '@/views/family/join/step/Step02'
 import FamilyJoinComplete from '@/views/family/join/step/Complete'
 import Main from '@/views/Main'
+import RestaurantContainer from '@/views/restaurant/Container'
+import RestaurantList from '@/views/restaurant/List'
+import RestaurantAddContainer from '@/views/restaurant/add/Container'
+import RestaurantAddStep01 from '@/views/restaurant/add/step/Step01'
+import RestaurantAddStep02 from '@/views/restaurant/add/step/Step02'
+import RestaurantAddStep03 from '@/views/restaurant/add/step/Step03'
 import ChoiceLunch1 from '@/views/choice/Members'
 import ChoiceLunch2 from '@/views/choice/Restaurants'
 import ChoiceLunchLoading from '@/views/choice/Loading'
 import ChoiceLunchResult from '@/views/choice/Result'
-import Restaurant from '@/views/restaurant/add/Restaurant'
-import Search from '@/views/restaurant/add/Search'
-import Preview from '@/views/restaurant/add/Preview'
-import Pick from '@/views/restaurant/add/Pick'
 import FamMembers from '@/views/member/FamMembers'
-import FamRestaurants from '@/views/restaurant/FamRestaurants'
 import DevLoginProxy from '@/dev/LoginProxy'
 
 Vue.use(Router)
@@ -97,6 +98,38 @@ export default new Router({
       ]
     },
     {
+      path: '/restaurant',
+      component: RestaurantContainer,
+      children: [
+        {
+          path: 'list',
+          name: 'RestaurantList',
+          component: RestaurantList
+        },
+        {
+          path: 'add',
+          component: RestaurantAddContainer,
+          children: [
+            {
+              path: '1',
+              name: 'RestaurantAddStep01',
+              component: RestaurantAddStep01
+            },
+            {
+              path: '2',
+              name: 'RestaurantAddStep02',
+              component: RestaurantAddStep02
+            },
+            {
+              path: '3',
+              name: 'RestaurantAddStep03',
+              component: RestaurantAddStep03
+            }
+          ]
+        }
+      ]
+    },
+    {
       path: '/choiceLunch1',
       name: 'ChoiceLunch1',
       component: ChoiceLunch1
@@ -117,38 +150,9 @@ export default new Router({
       component: ChoiceLunchResult
     },
     {
-      path: '/restaurant',
-      redirect: '/restaurant/search',
-      name: 'Restaurant',
-      component: Restaurant,
-      children: [
-        {
-          path: 'search',
-          name: 'search',
-          component: Search
-        },
-        {
-          path: 'preview',
-          name: 'preview',
-          component: Preview
-        },
-        {
-          path: 'pick',
-          name: 'pick',
-          component: Pick
-        }
-      ]
-    },
-    {
       path: '/famMembers',
       name: 'FamMembers',
       component: FamMembers
-    },
-    {
-      path: '/famRestaurants',
-      name: 'FamRestaurants',
-      component: FamRestaurants
-    },
-
+    }
   ]
 })

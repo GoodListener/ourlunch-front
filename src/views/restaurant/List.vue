@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <div>
     <v-app-bar>
       <v-btn icon @click="handleMainButton">
         <v-icon dark right>mdi-arrow-left</v-icon>&nbsp;
@@ -24,7 +24,7 @@
           <v-list-item-action class="flex-row align-center">
             <span v-if="famRestaurant.grade">
               <i v-for="index in 5" :key="index"
-                :class="index <= famRestaurant.grade / 2 ? 'fas fa-star star' :
+                 :class="index <= famRestaurant.grade / 2 ? 'fas fa-star star' :
                         index <= Math.ceil(famRestaurant.grade / 2) && famRestaurant.grade % 2 ? 'fas fa-star-half-alt star' : 'far fa-star emptyStar'"></i>
               <v-btn
                 rounded
@@ -45,7 +45,7 @@
       </template>
     </v-list>
     <modals-container/>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -53,53 +53,58 @@
   import confirmDeleteModal from '@/components/modals/confirmDelete'
 
   export default {
-  name: 'FamRestaurants',
-  components: {
-    
-  },
-  props: ['title'],
-  methods: {
-    handleMainButton: function () {
-      this.$router.push('Main')
+    name: 'RestaurantList',
+    created() {
+      /* eslint-disable */
     },
-    handleRestaurantButton: function () {
-      this.$router.push('restaurant')
+    props: ['title'],
+    methods: {
+      handleMainButton: function () {
+        this.$router.push({
+          name: 'Main'
+        })
+      },
+      handleRestaurantButton: function () {
+        this.$router.push({
+          name: 'RestaurantAddStep01'
+        })
+      },
+      evaluateRestaurant(restaurantName) {
+        this.$modal.show(evaluateRestaurantModal, {
+          restaurantName: restaurantName
+        }, {
+          width: '330px',
+          height: '160px',
+          draggable: false
+        })
+      },
+      deleteRestaurant(restaurantName) {
+        this.$modal.show(confirmDeleteModal, {
+          restaurantName: restaurantName
+        }, {
+          width: '330px',
+          height: '160px',
+          draggable: false
+        })
+      }
     },
-    evaluateRestaurant (restaurantName) {
-      this.$modal.show(evaluateRestaurantModal, {
-        restaurantName: restaurantName
-      }, {
-        width: '330px',
-        height: '160px',
-        draggable: false
-      })
-    },
-    deleteRestaurant (restaurantName) {
-      this.$modal.show(confirmDeleteModal, {
-        restaurantName: restaurantName
-      }, {
-        width: '330px',
-        height: '160px',
-        draggable: false
-      })
+    data: () => ({
+      famRestaurants: [],
+      showGradeModal: false
+    }),
+    mounted: function () {
+      // api.getFamilyRestaurant().then(response => {
+      //   window.console.log(response);
+      // })
     }
-  },
-  data: () => ({
-    famRestaurants: [],
-    showGradeModal: false
-  }),
-  mounted: function () {
-    // api.getFamilyRestaurant().then(response => {
-    //   window.console.log(response);
-    // })
   }
-}
 </script>
 <style scoped>
-.star{
-  color: #f7e63b;
-}
-.emptyStar{
-  color: rgba(55, 53, 47, 0.4);
-}
+  .star {
+    color: #f7e63b;
+  }
+
+  .emptyStar {
+    color: rgba(55, 53, 47, 0.4);
+  }
 </style>

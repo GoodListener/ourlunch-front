@@ -6,18 +6,19 @@
 </template>
 
 <script>
-import KakaoMap from '@/components/KakaoMap'
+  import KakaoMap from '@/components/KakaoMap'
 
-export default {
-  props: ['selectPlace'],
-  components: {
-    KakaoMap
+  export default {
+    name: 'RestaurantAddStep02',
+    props: ['selectPlace'],
+    components: {
+      KakaoMap
+    }
   }
-}
 </script>
 
 <style scoped>
-.map_content {
-  height: calc(100% - 64px - 88px);
-}
+  .map_content {
+    height: calc(100% - 64px - 88px);
+  }
 </style>
